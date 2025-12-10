@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Leptos App with Images</title>
+    <!--翔ちゃんメモ！data-target-pathを使うと仮想ディレクトリの名前が決めれるぞ!-->
+    <!--"/ここで決めた名称で/画像の名前"ってやればいける-->
+    <!--なぜか"images"だとうまくいかない(内部的になんか使用してて乾燥する？)-->
+    <link data-trunk rel="copy-dir" href="assets" data-target-path="image" />
+</head>
+
+<body>
+    <div id="main"></div>
+
+    <!-- 静的確認用 -->
+    <img src="/image/temmie.webp" alt="Temmie (static test)" style="max-width: 200px; height: auto;" />
+
+</body>
+
+</html>
