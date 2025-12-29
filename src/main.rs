@@ -2,23 +2,17 @@ use leptos::prelude::*;
 use leptos_router::components::{A, Route, Router, Routes};
 use leptos_router::path;
 
+mod text_data;
+
 // 共通スタイル
 fn global_style() -> &'static str {
     "
-    @keyframes rainbow-scroll {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 0% 100%; }
-    }
     html, body {
         margin: 0;
         padding: 0;
         min-height: 100vh;
-        background: linear-gradient(
-            180deg,
-            #ff0000, #ff8000, #ffff00, #00ff00,
-            #00ffff, #0000ff, #8000ff, #ff0080, #ff0000
-        );
-        background-size: 100% 900%;
+        background: #bfd9daff;
+        background-size: 100% 100%;
         animation: rainbow-scroll 5s linear infinite;
         background-attachment: fixed;
         cursor: url('/image/icon.ico') 0 0, crosshair;
@@ -30,9 +24,12 @@ fn global_style() -> &'static str {
 
 fn get_message(count: i32) -> String {
     match count {
-        0 => "Hello, Leptos!".to_string(),
-        1 => "The text has changed once!".to_string(),
-        2 => "Click again to reset.".to_string(),
+        0 => text_data::MAIN_TEXT[0].to_string(),
+        1 => text_data::MAIN_TEXT[1].to_string(),
+        2 => text_data::MAIN_TEXT[2].to_string(),
+        3 => text_data::MAIN_TEXT[3].to_string(),
+        4 => text_data::MAIN_TEXT[4].to_string(),
+        5 => text_data::MAIN_TEXT[5].to_string(),
         _ => format!("Clicked {} times!", count),
     }
 }
@@ -77,21 +74,56 @@ fn HomePage() -> impl IntoView {
     }
 }
 
-// ダイス専用ページ
 #[component]
-fn DicePage() -> impl IntoView {
-    let (dice, set_dice) = signal(fastrand::i32(1..=6));
+fn Menu() -> impl IntoView {
+    let (count, set_count) = signal(0);
 
-    let roll = move |_| {
-        set_dice.set(fastrand::i32(1..=6));
+    let plus_click = move |_| {
+        let next = count.get() + 1;
+        set_count.set(if next > 5 { 0 } else { next });
+    };
+
+    let minus_click = move |_| {
+        let next = count.get() - 1;
+        set_count.set(if next < 0 { 0 } else { next });
     };
 
     view! {
+        <style>
+            {r#"
+            .button {
+                position: fixed;
+                top: 0;
+                width: 50vw;
+                height: 100vh;
+                background: transparent;
+                border: none;
+            }
+
+            .left {
+                left: 0;
+            }
+
+            .right {
+                right: 0;
+            }
+            "#}
+        </style>
+
         <div>
-            <h1>"🎲 Dice Page"</h1>
-            <p style="font-size: 4rem;">{ move || dice.get() }</p>
-            <button on:click=roll>"Roll Dice"</button>
-            <p><A href="/">"Back to Home"</A></p>
+            <h1>"『平凡な生活』"</h1>
+            <p style="white-space: pre-line;">{ move || get_message(count.get()) }</p>
+
+            // count > 0 のときだけ「前」を表示
+            <Show when=move || {count.get() > 0}>
+                <button class="button left" on:click=minus_click>"前"</button>
+            </Show>
+
+            // count < 5 のときだけ「次」を表示
+            <Show when=move || {count.get() < 5}>
+                <button class="button right" on:click=plus_click>"次"</button>
+            </Show>
+
         </div>
     }
 }
@@ -99,19 +131,31 @@ fn DicePage() -> impl IntoView {
 // ルートApp
 #[component]
 fn App() -> impl IntoView {
+    let (count, _) = signal(0);
     view! {
-        <style>{ global_style() }</style>
+        <style>{ global_style()}
+            r#"
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 9999;
+            }"#
+        </style>
         <Router>
+            <Show when=move || {count.get() == 0}>
             <nav>
                 <A href="/">"Home"</A>
-                <A href="/dice">"Dice"</A>
+                <A href="/menu">"Menu"</A>
             </nav>
             <main>
                 <Routes fallback=|| "Not found.">
                     <Route path=path!("/") view=HomePage/>
-                    <Route path=path!("/dice") view=DicePage/>
+                    <Route path=path!("/menu") view=Menu/>
                 </Routes>
             </main>
+            </Show>
         </Router>
     }
 }
