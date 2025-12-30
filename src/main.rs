@@ -24,58 +24,50 @@ fn global_style() -> &'static str {
 
 fn get_message(count: i32) -> String {
     match count {
-        0 => text_data::MAIN_TEXT[0].to_string(),
-        1 => text_data::MAIN_TEXT[1].to_string(),
-        2 => text_data::MAIN_TEXT[2].to_string(),
-        3 => text_data::MAIN_TEXT[3].to_string(),
-        4 => text_data::MAIN_TEXT[4].to_string(),
-        5 => text_data::MAIN_TEXT[5].to_string(),
-        _ => format!("Clicked {} times!", count),
+        0 => text_data::NOVEL1[0].to_string(),
+        1 => text_data::NOVEL1[1].to_string(),
+        2 => text_data::NOVEL1[2].to_string(),
+        3 => text_data::NOVEL1[3].to_string(),
+        4 => text_data::NOVEL1[4].to_string(),
+        5 => text_data::NOVEL1[5].to_string(),
+        _ => format!("Not found Clicked {} times!", count),
     }
 }
 
 fn get_image(count: i32) -> &'static str {
     match count {
-        0 => "/image/temmie.webp",
-        1 => "/image/test.webp",
-        _ => "/image/default.webp",
+        1 => "/image/ouch.webp",
+        999 => "/image/temmie.webp",
+        9999 => "/image/test.webp",
+        _ => "",
+        //_ => "/image/default.webp",
     }
 }
 
 // ホームページ
 #[component]
 fn HomePage() -> impl IntoView {
-    let (count, set_count) = signal(0);
-
-    let plus_click = move |_| {
-        let next = count.get() + 1;
-        set_count.set(if next > 4 { 0 } else { next });
-    };
-
-    let minus_click = move |_| {
-        let next = count.get() - 1;
-        set_count.set(if next < -4 { 0 } else { next });
-    };
-
     view! {
         <div>
-            <p>{ move || get_message(count.get()) }</p>
-            <p>
-                <img
-                    src=move || get_image(count.get())
-                    alt="dynamic-image"
-                    style="max-width: 200px; height: auto;"
-                />
-            </p>
-            <button on:click=plus_click>"Plus"</button>
-            <button on:click=minus_click>"Minus"</button>
-            <p><A href="/dice">"Go to Dice Page"</A></p>
         </div>
     }
 }
 
+// 目次ページ
 #[component]
-fn Menu() -> impl IntoView {
+fn List() -> impl IntoView {
+    view! {
+        <p>
+            <A href="/novel_1">ノベル_1</A>
+            
+        </p>
+    }
+}
+
+// 小説ページ
+#[component]
+fn Novel_1() -> impl IntoView {
+
     let (count, set_count) = signal(0);
 
     let plus_click = move |_| {
@@ -90,28 +82,49 @@ fn Menu() -> impl IntoView {
 
     view! {
         <style>
+
             {r#"
+
             .button {
                 position: fixed;
                 top: 0;
-                width: 50vw;
                 height: 100vh;
                 background: transparent;
+                color: transparent;
                 border: none;
+            }
+            
+            /* hoverで触れている時だけ可視化 */
+            .button:hover {
+                background-color: rgba(0,0,0,0.2);
+                color: rgba(72, 72, 72, 1);
+                transition:
+                    background-color 0.8s,
+                    color 0.8s;
             }
 
             .left {
                 left: 0;
+                width: 25vw;
             }
 
             .right {
                 right: 0;
+                width: 25vw;
             }
+
             "#}
+
         </style>
 
         <div>
             <h1>"『平凡な生活』"</h1>
+            <img
+                src = move || get_image(count.get())
+                style = "
+                width: 80vw;
+                "
+            />
             <p style="white-space: pre-line;">{ move || get_message(count.get()) }</p>
 
             // count > 0 のときだけ「前」を表示
@@ -131,11 +144,11 @@ fn Menu() -> impl IntoView {
 // ルートApp
 #[component]
 fn App() -> impl IntoView {
-    let (count, _) = signal(0);
     view! {
         <style>{ global_style()}
             r#"
             nav {
+                background-color: rgba(92, 38, 92, 1);
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -144,18 +157,17 @@ fn App() -> impl IntoView {
             }"#
         </style>
         <Router>
-            <Show when=move || {count.get() == 0}>
             <nav>
                 <A href="/">"Home"</A>
-                <A href="/menu">"Menu"</A>
+                <A href="/list">"目次"</A>
             </nav>
             <main>
                 <Routes fallback=|| "Not found.">
                     <Route path=path!("/") view=HomePage/>
-                    <Route path=path!("/menu") view=Menu/>
+                    <Route path=path!("/list") view=List/>
+                    <Route path=path!("/novel_1") view=Novel_1/>
                 </Routes>
             </main>
-            </Show>
         </Router>
     }
 }
