@@ -59,7 +59,7 @@ fn List() -> impl IntoView {
     view! {
         <p>
             <A href="/novel_1">ノベル_1</A>
-            
+
         </p>
     }
 }
@@ -67,7 +67,6 @@ fn List() -> impl IntoView {
 // 小説ページ
 #[component]
 fn Novel_1() -> impl IntoView {
-
     let (count, set_count) = signal(0);
 
     let plus_click = move |_| {
