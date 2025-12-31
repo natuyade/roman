@@ -13,9 +13,8 @@ fn global_style() -> &'static str {
         min-height: 100vh;
         background: #bfd9daff;
         background-size: 100% 100%;
-        animation: rainbow-scroll 5s linear infinite;
         background-attachment: fixed;
-        cursor: url('/image/icon.ico') 0 0, crosshair;
+        cursor: url('/image/default.webp') 0 0, crosshair;
     }
     nav { margin-bottom: 20px; }
     nav a { margin-right: 10px; color: white; }
@@ -57,10 +56,51 @@ fn HomePage() -> impl IntoView {
 #[component]
 fn List() -> impl IntoView {
     view! {
-        <p>
-            <A href="/novel_1">ノベル_1</A>
+            <style>
+            r#"
 
-        </p>
+            body{
+                /* 画面全体を高さにする */
+                min-height: 100vh;
+
+                /* Flexbox を有効化 */
+                display: flex;
+
+                /* 横方向 中央 */
+                justify-content: center;
+
+                /* 縦方向 中央 */
+                align-items: center;
+        }
+                /*
+                containerで箱を作り、
+                marginをautoにしどちらも均等な余白をつくることで
+                中央に整列できる。
+                */
+                .container{
+                    width: 50vw;
+                    text-align: left;
+                }
+
+                .list{
+                    top: 100px;
+                    background: orange;/* debug_bg */
+                    padding: 10px; 
+                }
+
+            "#
+            </style>
+            <div class="container">
+                <p class="list">
+                    "・"<A href="/novel_1">"『平凡な生活』"</A>
+                </p>
+                <p class="list">
+                    "・"<A href="/novel_2">"novel_2"</A>
+                </p>
+                <p class="list">
+                    "・"<A href="/novel_3">"novel_3"</A>
+                </p>
+            </div>
     }
 }
 
@@ -121,7 +161,7 @@ fn Novel_1() -> impl IntoView {
             <img
                 src = move || get_image(count.get())
                 style = "
-                width: 80vw;
+                width: 650px;
                 "
             />
             <p style="white-space: pre-line;">{ move || get_message(count.get()) }</p>

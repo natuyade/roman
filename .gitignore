@@ -1,3 +1,4 @@
-/target
-/dist
+target/
+dist/
+.leptos/
 Cargo.lock
