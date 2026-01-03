@@ -8,7 +8,7 @@ pub fn Novel_2() -> impl IntoView {
 
     let plus_click = move |_| {
         let next = count.get() + 1;
-        set_count.set(if next > 5 { 0 } else { next });
+        set_count.set(next);
     };
 
     let minus_click = move |_| {
