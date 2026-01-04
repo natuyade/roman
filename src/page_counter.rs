@@ -1,5 +1,3 @@
-use std::path::Path;
-
 use crate::text_data;
 
 
@@ -40,15 +38,15 @@ pub fn get_message(novel: Novel, count: usize) -> String {
 }
 
 impl NovelImg {
-    pub fn path(&self, count:usize) -> &'static Path{
+    pub fn path(&self, count:usize) -> &'static str{
         match self{
             NovelImg::Novel1 => match count {
-                1 => Path::new("/image/ouch.webp"),
-                _ => Path::new(""),
+                1 => "/image/ouch.webp",
+                _ => "",
             },
             NovelImg::Novel2 => match count {
-                0 => Path::new("/image/temmie.webp"),
-                _ => Path::new(""),
+                0 => "/image/temmie.webp",
+                _ => "",
                 
             },
         }
