@@ -38,14 +38,16 @@ pub fn get_message(novel: Novel, count: usize) -> String {
 }
 
 impl NovelImg {
-    pub fn nimgpath(&self, count:usize) -> &'static str{
+    pub fn nimgpath(&self, count:usize) -> Option<&'static str>{
         match self{
             NovelImg::Novel1 => match count {
-                1 => "/image/ouch.webp",
-                _ => "",
+                1 => Some("/image/ouch.webp"),
+                2 => Some("/image/doup.webp"),
+                _ => None,
             },
             NovelImg::Novel2 => match count {
-                _ => "",
+                0 => Some("/image/zenbuyaku.webp"),
+                _ => None,
                 
             },
         }

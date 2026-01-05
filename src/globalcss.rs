@@ -4,7 +4,7 @@ pub fn global_style() -> &'static str {
     html, body {
         margin: 0;
         padding: 0;
-        background: #bfd9daff;
+        background: #cfe4eeff;
         /* 背景を固定 */
         background-attachment: fixed;
         cursor: url('/image/default.webp') 0 0, crosshair;
@@ -21,6 +21,28 @@ pub fn global_style() -> &'static str {
     nav a {
         margin-right: 10px;
         color: rgba(248, 191, 33, 1);
+    }
+
+    .novelbg {
+        background-image: url('/image/penguin.webp');
+        height: 100vh;
+    }
+
+    .inner {
+        background: #ffffffff;
+        margin: auto;
+        padding: 0 10px 0 10px;
+        width: 660px;
+        height: 100vh;
+    }
+
+    .illust {
+        margin: auto;
+        width: 90vw;
+        height: auto;
+        max-width: 650px;
+        border: solid;
+        border-width: 1px;
     }
 
     .button {

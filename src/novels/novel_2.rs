@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::page_counter::{Novel, NovelImg, get_message};
+use crate::{page_counter::{Novel, NovelImg, get_message}};
 
 
 // 小説ページ
@@ -27,12 +27,20 @@ pub fn Novel_2() -> impl IntoView {
     view! {
         <div>
             <h1>"『壊れかけの炒飯』"</h1>
-            <img
-                src = move || NovelImg::Novel2.nimgpath(count.get())
-                style = "
-                width: 650px;
-                "
-            />
+        </div>
+            <Show 
+                when= move || NovelImg::Novel2.nimgpath(count.get()).is_some()
+                fallback=|| view!{}
+            >{
+                view!{
+                    <img
+                        class="illust"
+                        src = move || NovelImg::Novel2.nimgpath(count.get())
+                    />
+                }
+            }
+            </Show>
+        <div class="novel">
             <p style="white-space: pre-line;">{ move || get_message(Novel::Novel2 , count.get()) }</p>
 
             // count > 0 のときだけ「前」を表示

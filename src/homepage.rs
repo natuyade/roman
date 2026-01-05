@@ -6,16 +6,18 @@ pub fn HomePage() -> impl IntoView {
     view! {
         <style>
         "
-        body{
+        .title{
+            margin-top: 128px;
             display: flex;
                     justify-content: center;
         }
+        .icon{
+        }
         "
         </style>
-        <div>
-            <p>"P2R"
-            <img src="/image/p2r_logo.webp"></img>
-            </p>
+        <div class="title">
+            <img class="icon" src="/image/p2r_logo.webp"></img>
+            <h1>"創作小説"</h1>
         </div>
     }
 }
