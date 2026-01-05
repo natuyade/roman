@@ -31,9 +31,7 @@ fn App() -> impl IntoView {
                     <Route path=path!("/") view=HomePage/>
                     <Route path=path!("/list") view=Novel_list/>
                     <Route path=path!("/novel_1") view=Novel_1/>
-                    <Route path=path!("/novel_1/:page") view=Novel_1/>
                     <Route path=path!("/novel_2") view=Novel_2/>
-                    <Route path=path!("/novel_2/:page") view=Novel_2/>
                 </Routes>
             </main>
         </Router>

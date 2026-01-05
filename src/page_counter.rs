@@ -21,7 +21,7 @@ pub enum NovelImg {
 }
 
 impl Novel {
-    pub fn page(&self) -> &'static[&'static str] {
+    pub fn novel_page(&self) -> &'static[&'static str] {
         match self {
             Novel::Novel1 => &text_data::NOVEL1,
             Novel::Novel2 => &text_data::NOVEL2,
@@ -31,21 +31,20 @@ impl Novel {
 
 pub fn get_message(novel: Novel, count: usize) -> String {
     novel
-        .page()
+        .novel_page()
         .get(count)
         .unwrap_or(&"Not found")
         .to_string()
 }
 
 impl NovelImg {
-    pub fn path(&self, count:usize) -> &'static str{
+    pub fn nimgpath(&self, count:usize) -> &'static str{
         match self{
             NovelImg::Novel1 => match count {
                 1 => "/image/ouch.webp",
                 _ => "",
             },
             NovelImg::Novel2 => match count {
-                0 => "/image/temmie.webp",
                 _ => "",
                 
             },

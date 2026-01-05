@@ -15,7 +15,7 @@ pub fn Novel_list() -> impl IntoView {
 
                     /* 縦方向 中央 */
                     /* align-items: center; */
-        }
+            }
 
                 .container{
                     margin-top: 100px;
@@ -34,7 +34,7 @@ pub fn Novel_list() -> impl IntoView {
                     "・"<A href="/novel_1">"『平凡な生活』"</A>
                 </p>
                 <p class="list">
-                    "・"<A href="/novel_2">"TESTTTT"</A>
+                    "・"<A href="/novel_2">"『壊れかけの炒飯』"</A>
                 </p>
                 <p class="list">
                     "・"<A href="/novel_3">"novel_3"</A>
