@@ -25,35 +25,39 @@ pub fn Novel_2() -> impl IntoView {
 
 
     view! {
-        <div>
-            <h1>"『壊れかけの炒飯』"</h1>
-        </div>
-            <Show 
-                when= move || NovelImg::Novel2.nimgpath(count.get()).is_some()
-                fallback=|| view!{}
-            >{
-                view!{
-                    <img
-                        class="illust"
-                        src = move || NovelImg::Novel2.nimgpath(count.get())
-                    />
+    <div class="novelbg">
+        <div class="inner">
+            <div>
+                <h1>"『壊れかけの炒飯』"</h1>
+            </div>
+                <Show 
+                    when= move || NovelImg::Novel2.nimgpath(count.get()).is_some()
+                    fallback=|| view!{}
+                >{
+                    view!{
+                        <img
+                            class="illust"
+                            src = move || NovelImg::Novel2.nimgpath(count.get())
+                        />
+                    }
                 }
-            }
-            </Show>
-        <div class="novel">
-            <p style="white-space: pre-line;">{ move || get_message(Novel::Novel2 , count.get()) }</p>
+                </Show>
+            <div class="novel">
+                <p style="white-space: pre-line;">{ move || get_message(Novel::Novel2 , count.get()) }</p>
 
-            // count > 0 のときだけ「前」を表示
-            <Show when={move || count.get() > 0}>
-                <button class="button left" on:click=minus_click>"prev"</button>
-                
-            </Show>
+                // count > 0 のときだけ「前」を表示
+                <Show when={move || count.get() > 0}>
+                    <button class="button left" on:click=minus_click>"prev"</button>
 
-            // count < pages のときだけ「次」を表示
-            <Show when={move || count.get() + 1 < page_num}>
-                <button class="button right" on:click=plus_click>"next"</button>
-            </Show>
+                </Show>
 
+                // count < pages のときだけ「次」を表示
+                <Show when={move || count.get() + 1 < page_num}>
+                    <button class="button right" on:click=plus_click>"next"</button>
+                </Show>
+
+            </div>
         </div>
+    </div>
     }
 }

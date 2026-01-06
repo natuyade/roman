@@ -15,6 +15,7 @@ mod homepage;
 mod novel_list;
 mod page_counter;
 mod text_data;
+mod nonsense;
 
 // ルートApp
 #[component]

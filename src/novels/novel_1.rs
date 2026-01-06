@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::{page_counter::{Novel, NovelImg, get_message}};
+use crate::page_counter::{Novel, NovelImg, get_message};
 
 
 // 小説ページ

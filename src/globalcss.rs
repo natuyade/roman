@@ -25,7 +25,8 @@ pub fn global_style() -> &'static str {
 
     .novelbg {
         background-image: url('/image/penguin.webp');
-        height: 100vh;
+        background-attachment: fixed;
+        background-size: cover;
     }
 
     .inner {
