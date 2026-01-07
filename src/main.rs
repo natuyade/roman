@@ -4,19 +4,19 @@ use leptos_router::path;
 
 use crate::globalcss::global_style;
 use crate::homepage::HomePage;
-use crate::novel_list::Novel_list;
-use crate::novels::novel_1::Novel_1;
-use crate::novels::novel_2::Novel_2;
+use crate::novel_list::NovelPageList;
+use crate::novels::novel_1::NovelPage1;
+use crate::novels::novel_2::NovelPage2;
 
 mod novels;
 
 mod globalcss;
 mod homepage;
+mod nonsense;
 mod novel_list;
 mod page_counter;
 mod text_data;
-mod nonsense;
-
+#[allow(non_snake_case)]
 // ルートApp
 #[component]
 fn App() -> impl IntoView {
@@ -30,9 +30,9 @@ fn App() -> impl IntoView {
             <main>
                 <Routes fallback=|| "Page not found.">
                     <Route path=path!("/") view=HomePage/>
-                    <Route path=path!("/list") view=Novel_list/>
-                    <Route path=path!("/novel_1") view=Novel_1/>
-                    <Route path=path!("/novel_2") view=Novel_2/>
+                    <Route path=path!("/list") view=NovelPageList/>
+                    <Route path=path!("/novel_1") view=NovelPage1/>
+                    <Route path=path!("/novel_2") view=NovelPage2/>
                 </Routes>
             </main>
         </Router>

@@ -4,9 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-nanorand = { version = "0.8.0" }
-anyhow = { version = "1.0.100" }
+fastrand = { version = "2.3.0" ,features=["js"]}
+
+anyhow = { version = "1.0.100" ,features=[]}
+regex = { version = "1.12.2" ,features=[]}
+
 serde = { version = "1.0.228", features = ["derive"] }
-serde_json = { version = "1.0.148" }
+serde_json = { version = "1.0.149" ,features=[]}
 leptos = { version = "0.8.15", features = ["csr"] }
-leptos_router = { version = "0.8.11" }
+leptos_router = { version = "0.8.11" ,features=[]}

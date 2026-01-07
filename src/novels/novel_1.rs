@@ -5,7 +5,7 @@ use crate::page_counter::{Novel, NovelImg, get_message};
 
 // 小説ページ
 #[component]
-pub fn Novel_1() -> impl IntoView {
+pub fn novel_page_1() -> impl IntoView {
 
     /* countはReadSignal, set_countはWriteSignal */
     let (count, set_count) = signal(0usize);
@@ -22,40 +22,39 @@ pub fn Novel_1() -> impl IntoView {
     let plus_click = move |_| {
         set_count.update(|c| *c += 1);
     };
+    
 
 
     view! {
     <div class="novelbg">
-        <div class="inner">
-            <div>
-                <h1>"『平凡な生活』"</h1>
-            </div>
-                <Show 
-                    when= move || NovelImg::Novel1.nimgpath(count.get()).is_some()
-                    fallback=|| view!{}
-                >{
-                    view!{
-                        <img
-                            class="illust"
-                            src = move || NovelImg::Novel1.nimgpath(count.get())
-                        />
-                    }
-                }
-                </Show>
-            <div class="novel">
-                <p style="white-space: pre-line;">{ move || get_message(Novel::Novel1 , count.get()) }</p>
-
-                // count > 0 のときだけ「前」を表示
-                <Show when={move || count.get() > 0}>
-                    <button class="button left" on:click=minus_click>"prev"</button>
-
-                </Show>
-
-                // count < pages のときだけ「次」を表示
-                <Show when={move || count.get() + 1 < page_num}>
+        <div class="center_bg">
+            <div class="inner">
+                <div>
+                    <h1>"『平凡な生活』"</h1>
+                </div>
+                    <Show 
+                        when= move || NovelImg::Novel1.nimgpath(count.get()).is_some()
+                            fallback=|| ()
+                                >{
+                                    view!{
+                                        <img
+                                        class="illust"
+                                        src = move || NovelImg::Novel1.nimgpath(count.get())
+                                        />
+                                    }
+                                }
+                    </Show>
+                <div class="novel">
+                    <p style="white-space: pre-line;">{ move || get_message(Novel::Novel1 , count.get()) }</p>                
+                    // count > 0 のときだけ「前」を表示
+                    <Show when={move || count.get() > 0}>
+                        <button class="button left" on:click=minus_click>"prev"</button>
+                    </Show>
+                    // count < pages のときだけ「次」を表示
+                    <Show when={move || count.get() + 1 < page_num}>
                     <button class="button right" on:click=plus_click>"next"</button>
-                </Show>
-
+                    </Show>
+                </div>
             </div>
         </div>
     </div>

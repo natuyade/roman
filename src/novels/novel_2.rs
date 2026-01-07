@@ -5,7 +5,7 @@ use crate::{page_counter::{Novel, NovelImg, get_message}};
 
 // 小説ページ
 #[component]
-pub fn Novel_2() -> impl IntoView {
+pub fn novel_page_2() -> impl IntoView {
 
     /* countはReadSignal, set_countはWriteSignal */
     let (count, set_count) = signal(0usize);
@@ -32,7 +32,7 @@ pub fn Novel_2() -> impl IntoView {
             </div>
                 <Show 
                     when= move || NovelImg::Novel2.nimgpath(count.get()).is_some()
-                    fallback=|| view!{}
+                    fallback=|| ()
                 >{
                     view!{
                         <img

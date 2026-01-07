@@ -3,7 +3,7 @@ use leptos_router::components::A;
 
 // 目次ページ
 #[component]
-pub fn Novel_list() -> impl IntoView {
+pub fn novel_page_list() -> impl IntoView {
     view! {
             <style>
             "

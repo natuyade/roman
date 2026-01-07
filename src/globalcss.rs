@@ -1,13 +1,27 @@
 // 共通スタイル
 pub fn global_style() -> &'static str {
     "
+    @font-face {
+        font-family: 'Unifont';
+        src: url('/image/unifont-17.0.03.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    
     html, body {
         margin: 0;
         padding: 0;
-        background: #cfe4eeff;
+        background: #16080D;
         /* 背景を固定 */
         background-attachment: fixed;
         cursor: url('/image/default.webp') 0 0, crosshair;
+    }
+    
+    .novelbg {
+        background-image: url('/image/penguin.webp');
+        background-attachment: fixed;
+        background-size: cover;
     }
 
     nav {
@@ -23,25 +37,28 @@ pub fn global_style() -> &'static str {
         color: rgba(248, 191, 33, 1);
     }
 
-    .novelbg {
-        background-image: url('/image/penguin.webp');
-        background-attachment: fixed;
-        background-size: cover;
-    }
-
-    .inner {
+    .center_bg {
+        margin: 0 auto;
         background: #ffffffff;
-        margin: auto;
-        padding: 0 10px 0 10px;
         width: 660px;
         height: 100vh;
     }
-
-    .illust {
-        margin: auto;
-        width: 90vw;
-        height: auto;
+    
+    .inner {
         max-width: 650px;
+        margin: 0 auto;
+        width: 650px;
+        height: auto;
+    }
+
+    .novel {
+        height: auto;
+    }
+    
+    .illust {
+        width: 100vw;
+        max-width: 650px;
+        height: auto;
         border: solid;
         border-width: 1px;
     }
