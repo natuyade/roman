@@ -39,7 +39,7 @@ pub fn global_style() -> &'static str {
 
     .center_bg {
         margin: 0 auto;
-        background: #ffffffff;
+        background: #d4d4d4;
         width: 660px;
         height: 100vh;
     }

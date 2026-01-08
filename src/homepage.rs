@@ -20,7 +20,11 @@ pub fn HomePage() -> impl IntoView {
 
     view! {
         <style>
-        "
+        r#"
+        a[target="_blank"] {
+            outline: none;
+        }
+        
         @keyframes splash {
             46%{
                 scale: 110%
@@ -59,17 +63,32 @@ pub fn HomePage() -> impl IntoView {
             animation-iteration-count: infinite;
         }
         
-        .schedule {
+        .schedule_box {
             display: flex;
-            justify-content: center;
+                justify-content: center;
             margin: auto auto;
-            max-width: 60vw;
+            position-top: 100px;
+            border: solid;
+            border-width: 4px;
+            border-color: white;
+            background-color: black;
+            width: 95vw;
+            height: 95vw;
+            max-width: 320px;
+            max-height: 240px;
+        }
+        
+        .schedule {
             font-family: 'Unifont';
             font-size: 24px;
             color: Yellow;
             text-shadow: 1px 0 6px #838939;
+            text-align: center;
         }
-        "
+        .schedule_img {
+            width: 240px;
+        }
+        "#
         </style>
         <div class="title">
             <img class="icon" src="/image/p2r_logo_wh.webp"></img>
@@ -78,8 +97,14 @@ pub fn HomePage() -> impl IntoView {
         <div class="splash">
             <p>{splash}</p>
         </div>
-        <div class="schedule">
-            <p>sfdfdsfds</p>
+        <div class="schedule_box">
+            <div class="schedule">
+                <p>スケジュール</p>
+                //file downloadになる形や外部ソフトの場合<A>ではなく<a>
+                <a href="/image/schedule.jpg" target="_blank">
+                    <img class="schedule_img" src="/image/schedule.jpg"></img>
+                </a>
+            </div>
         </div>
     }
 }
