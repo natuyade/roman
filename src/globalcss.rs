@@ -3,7 +3,7 @@ pub fn global_style() -> &'static str {
     "
     @font-face {
         font-family: 'Unifont';
-        src: url('/image/unifont-17.0.03.otf') format('opentype');
+        src: url('assets/fonts/unifont-17.0.03.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
         font-display: swap;
@@ -15,11 +15,11 @@ pub fn global_style() -> &'static str {
         background: #16080D;
         /* 背景を固定 */
         background-attachment: fixed;
-        cursor: url('/image/default.webp') 0 0, crosshair;
+        cursor: url('assets/images/default.webp') 0 0, crosshair;
     }
     
     .novelbg {
-        background-image: url('/image/penguin.webp');
+        background-image: url('assets/images/penguin.webp');
         background-attachment: fixed;
         background-size: cover;
     }

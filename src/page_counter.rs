@@ -41,12 +41,12 @@ impl NovelImg {
     pub fn nimgpath(&self, count:usize) -> Option<&'static str>{
         match self{
             NovelImg::Novel1 => match count {
-                1 => Some("/image/ouch.webp"),
-                2 => Some("/image/doup.webp"),
+                1 => Some("assets/images/ouch.webp"),
+                2 => Some("assets/images/doup.webp"),
                 _ => None,
             },
             NovelImg::Novel2 => match count {
-                0 => Some("/image/zenbuyaku.webp"),
+                0 => Some("assets/images/zenbuyaku.webp"),
                 _ => None,
                 
             },
