@@ -63,11 +63,10 @@ pub fn HomePage() -> impl IntoView {
             animation-iteration-count: infinite;
         }
         
-        .schedule_box {
+        .schedule-box {
             display: flex;
             justify-content: center;
-            margin: 0 auto;
-            margin-top: 240px;
+            margin: 128px auto 0 auto;
             border: solid;
             border-width: 4px;
             border-color: white;
@@ -84,7 +83,7 @@ pub fn HomePage() -> impl IntoView {
             color: Yellow;
             text-align: center;
         }
-        .schedule_img {
+        .schedule-img {
             width: 240px;
         }
         "#
@@ -96,12 +95,12 @@ pub fn HomePage() -> impl IntoView {
         <div class="splash">
             <p>{splash}</p>
         </div>
-        <div class="schedule_box">
+        <div class="schedule-box">
             <div class="schedule">
                 <p>スケジュール</p>
                 //file downloadになる形や外部ソフトの場合<A>ではなく<a>
                 <a href="/assets/images/schedule.jpg" target="_blank">
-                    <img class="schedule_img" src="/assets/images/schedule.jpg"></img>
+                    <img class="schedule-img" src="/assets/images/schedule.jpg"></img>
                 </a>
             </div>
         </div>

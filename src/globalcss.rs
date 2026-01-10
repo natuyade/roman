@@ -15,11 +15,11 @@ pub fn global_style() -> &'static str {
         background: #16080D;
         /* 背景を固定 */
         background-attachment: fixed;
-        cursor: url('assets/images/default.webp') 0 0, crosshair;
+        cursor: url('assets/images/cursorpg.webp') 0 0, crosshair;
     }
     
     .novelbg {
-        background-image: url('assets/images/penguin.webp');
+        background-image: url('assets/images/novelbg.webp');
         background-attachment: fixed;
         background-size: cover;
     }
@@ -37,7 +37,7 @@ pub fn global_style() -> &'static str {
         color: rgba(248, 191, 33, 1);
     }
 
-    .center_bg {
+    .center-bg {
         margin: 0 auto;
         background: #d4d4d4;
         width: 660px;

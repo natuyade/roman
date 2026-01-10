@@ -27,7 +27,7 @@ pub fn novel_page_1() -> impl IntoView {
 
     view! {
     <div class="novelbg">
-        <div class="center_bg">
+        <div class="center-bg">
             <div class="inner">
                 <div>
                     <h1>"『平凡な生活』"</h1>

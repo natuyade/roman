@@ -7,28 +7,20 @@ pub fn novel_page_list() -> impl IntoView {
     view! {
             <style>
             "
-            body{
-            /* Flexbox を有効化 */
-            display: flex;
-                /* 横方向 中央 */
-                justify-content: center;
-
-                /* 縦方向 中央 */
-                /* align-items: center; */
+                .text-box-pos {
+                    position: relative;
+                    /* Flexbox を有効化 */
+                    display: flex;
+                        /* 横方向 中央 */
+                        justify-content: center;
+                        /* 縦方向 中央 */
+                        align-items: center;
+                    height: 100vh;
                 }
                 
-                a {
-                }
-                
-                .text_box_pos {
-                    margin-top: 100px;
-                
-                }
-                
-                .text_box {
+                .text-box {
                     display: flex;
                         justify-content: center;
-                        align-items: center;
                         flex-direction: column;
                     padding: 0px;
                     text-align: center;
@@ -42,28 +34,30 @@ pub fn novel_page_list() -> impl IntoView {
                     max-height: 400px;
                 }
                 
-                .novel_link {
+                .novel-link {
                     font-family: 'Unifont';
                     color: Yellow;
                     text-decoration: none;
                 }
-                .novel_link:hover {
+                .novel-link:hover {
                     color: orange;
                 }
             "
             </style>
-            <div class="text_box_pos">
-                <div class="text_box">
+        <body>
+            <div class="text-box-pos">
+                <div class="text-box">
                     <p>
-                        <A attr:class="novel_link" href="/novel_1">"『平凡な生活』"</A>
+                        <A attr:class="novel-link" href="/novel_1">"『平凡な生活』"</A>
                     </p>
                     <p>
-                        <A attr:class="novel_link" href="/novel_2">"『壊れかけの炒飯』"</A>
+                        <A attr:class="novel-link" href="/novel_2">"『壊れかけの炒飯』"</A>
                     </p>
                     <p>
-                        <A attr:class="novel_link" href="/novel_3">"novel_3"</A>
+                        <A attr:class="novel-link" href="/novel_3">"novel_3"</A>
                     </p>
                 </div>
             </div>
+        </body>
     }
 }
