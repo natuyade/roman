@@ -15,13 +15,11 @@ pub fn global_style() -> &'static str {
         background: #16080D;
         /* 背景を固定 */
         background-attachment: fixed;
-        cursor: url('assets/images/cursorpg.webp') 0 0, crosshair;
+        cursor: url('assets/images/cursorpg.webp') 0 0, default;
     }
     
-    .novelbg {
-        background-image: url('assets/images/novelbg.webp');
-        background-attachment: fixed;
-        background-size: cover;
+    a {
+        cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
 
     nav {
@@ -36,10 +34,16 @@ pub fn global_style() -> &'static str {
         margin-right: 10px;
         color: rgba(248, 191, 33, 1);
     }
+    
+    .novelbg {
+        background-image: url('assets/images/novelbg.webp');
+        background-attachment: fixed;
+        background-size: cover;
+    }
 
     .center-bg {
         margin: 0 auto;
-        background: #d4d4d4;
+        background: #d6d0bd;
         width: 660px;
         height: 100vh;
     }
@@ -53,6 +57,8 @@ pub fn global_style() -> &'static str {
 
     .novel {
         height: auto;
+        color: #491e04;
+        text-shadow: 1px 1px 1px #c6bb9f;
     }
     
     .illust {
