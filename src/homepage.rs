@@ -33,7 +33,11 @@ pub fn HomePage() -> impl IntoView {
                 scale: 100%
             }
         }
-
+        
+        .wrapper {
+            position:relective;
+        }
+        
         .title {
             display: flex;
                 justify-content: center;
@@ -44,9 +48,6 @@ pub fn HomePage() -> impl IntoView {
         .icon {
             width: 64px;
             height: 64px;
-        }
-        
-        .splashbox {
         }
         
         .splash {
@@ -66,7 +67,7 @@ pub fn HomePage() -> impl IntoView {
         .schedule-box {
             display: flex;
             justify-content: center;
-            margin: 128px auto 0 auto;
+            margin: 0 auto;
             border: solid;
             border-width: 4px;
             border-color: white;
@@ -76,7 +77,7 @@ pub fn HomePage() -> impl IntoView {
             max-width: 320px;
             max-height: 240px;
         }
-        
+
         .schedule {
             font-family: 'Unifont';
             font-size: 24px;
@@ -88,20 +89,22 @@ pub fn HomePage() -> impl IntoView {
         }
         "#
         </style>
-        <div class="title">
-            <img class="icon" src="assets/images/p2r_logo_wh.webp"></img>
-            <h1>"創作小説"</h1>
-        </div>
-        <div class="splash">
-            <p>{splash}</p>
-        </div>
-        <div class="schedule-box">
-            <div class="schedule">
-                <p>スケジュール</p>
-                //file downloadになる形や外部ソフトの場合<A>ではなく<a>
-                <a href="/assets/images/schedule.jpg" target="_blank">
-                    <img class="schedule-img" src="/assets/images/schedule.jpg"></img>
-                </a>
+        <div class="wrapper">
+            <div class="title">
+                <img class="icon" src="assets/images/p2r_logo_wh.webp"></img>
+                <h1>"創作小説"</h1>
+            </div>
+            <div class="splash">
+                <p>{splash}</p>
+                </div>
+                <div class="schedule-box">
+                <div class="schedule">
+                    <p>スケジュール</p>
+                    //file downloadになる形や外部ソフトの場合<A>ではなく<a>
+                    <a href="/assets/images/schedule.jpg" target="_blank">
+                        <img class="schedule-img" src="/assets/images/schedule.jpg"></img>
+                        </a>
+                </div>
             </div>
         </div>
     }

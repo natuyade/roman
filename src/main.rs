@@ -17,6 +17,8 @@ mod nonsense;
 mod novel_list;
 mod page_counter;
 mod text_data;
+mod menu_icon;
+
 #[allow(non_snake_case)]
 // ルートApp
 #[component]
