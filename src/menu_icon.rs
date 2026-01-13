@@ -3,10 +3,10 @@ use std::f64::consts::PI;
 pub fn draw_menu_icon(ctx: &web_sys::CanvasRenderingContext2d){
     
     // 描画処理部分
-    ctx.set_stroke_style_str("white");
-    ctx.set_fill_style_str("white");
+    // ctx.set_stroke_style_str("white");
+    // ctx.set_fill_style_str("white");
     // 背景生成
-    ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
+    // ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
     /*
      * set_global_composite_operation
      *  destnation-out=描いた場所を透過
@@ -41,7 +41,7 @@ pub fn draw_menu_icon(ctx: &web_sys::CanvasRenderingContext2d){
     ctx.set_global_composite_operation("source-over").unwrap();
     
     // rectangle生成(Pの直線)
-    ctx.set_fill_style_str("black");
+    // ctx.set_fill_style_str("black");
     ctx.fill_rect(50.0, 60.0, 30.0, 140.0);
     ctx.fill_rect(50.0, 30.0, 60.0, 30.0);
     ctx.fill_rect(50.0, 130.0, 60.0, 30.0);
@@ -128,75 +128,4 @@ pub fn draw_menu_icon(ctx: &web_sys::CanvasRenderingContext2d){
 }
 
 pub fn draw_menu_icon_false(ctx: &web_sys::CanvasRenderingContext2d){
-    
-    ctx.set_stroke_style_str("green");
-    ctx.set_fill_style_str("green");
-    ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
-    ctx.set_global_composite_operation("destination-out").unwrap();
-    ctx.begin_path();
-    ctx.arc(64.0, 64.0, 64.0, PI, -PI/2.0).unwrap();
-    ctx.line_to(0.0, 0.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.arc(256.0, 64.0, 64.0, -PI/2.0, 0.0).unwrap();
-    ctx.line_to(320.0, 0.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.arc(64.0, 256.0, 64.0, PI/2.0, PI).unwrap();
-    ctx.line_to(0.0, 320.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.arc(256.0, 256.0, 64.0, 0.0, PI/2.0).unwrap();
-    ctx.line_to(320.0, 320.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.set_global_composite_operation("source-over").unwrap();
-    ctx.set_fill_style_str("white");
-    ctx.fill_rect(50.0, 60.0, 30.0, 140.0);
-    ctx.fill_rect(50.0, 30.0, 60.0, 30.0);
-    ctx.fill_rect(50.0, 130.0, 60.0, 30.0);
-    ctx.begin_path();
-    ctx.move_to(50.0, 200.0);
-    ctx.line_to(80.0, 200.0);
-    ctx.line_to(10.0, 260.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.arc(115.0, 95.0, 65.0, -PI/2.0, PI/2.0).unwrap();
-    ctx.line_to(110.0, 160.0);
-    ctx.arc_with_anticlockwise(110.0, 95.0, 35.0, PI/2.0, -PI/2.0, true).unwrap();
-    ctx.line_to(110.0, 30.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.arc(145.0, 65.0, 35.0, -PI/2.0, 0.0).unwrap();
-    ctx.line_to(180.0, 30.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.arc(215.0, 95.0, 65.0, -PI/2.0, PI/2.0).unwrap();
-    ctx.line_to(190.0, 150.0);
-    ctx.arc_with_anticlockwise(210.0, 95.0, 35.0, PI/2.0, -PI/2.0, true).unwrap();
-    ctx.line_to(200.0, 60.0);
-    ctx.line_to(200.0, 30.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.move_to(200.0, 140.0);
-    ctx.line_to(300.0, 280.0);
-    ctx.line_to(260.0, 280.0);
-    ctx.line_to(175.0, 165.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.begin_path();
-    ctx.move_to(150.0, 160.0);
-    ctx.line_to(170.0, 180.0);
-    ctx.line_to(100.0, 250.0);
-    ctx.line_to(60.0, 250.0);
-    ctx.close_path();
-    ctx.fill();
-    ctx.fill_rect(60.0, 250.0, 120.0, 30.0);
 }

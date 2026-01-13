@@ -1,4 +1,4 @@
-use leptos::prelude::*;
+use leptos::{prelude::*, task::spawn_local};
 use leptos::html::Canvas;
 
 use crate::menu_icon::{draw_menu_icon, draw_menu_icon_false};
@@ -35,9 +35,28 @@ pub fn test_1() -> impl IntoView {
                 ctx.clear_rect(0.0, 0.0, 320.0, 320.0);
                 
                 if checked.get() {
-                    draw_menu_icon(&ctx);
+                        ctx.set_fill_style_str("white");
+                        ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
+                        ctx.set_fill_style_str("black");
+                        draw_menu_icon(&ctx);
+                        spawn_local(async move {
+                            gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
+                            
+                            spawn_local(async move {
+                                gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
+                    });
                 } else {
-                    draw_menu_icon_false(&ctx);
+                        ctx.set_fill_style_str("green");
+                        ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
+                        ctx.set_fill_style_str("white");
+                        draw_menu_icon(&ctx);
+                        spawn_local(async move {
+                            gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
+                            
+                            spawn_local(async move {
+                                gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
+                    });
+                    //draw_menu_icon_false(&ctx);
                 }
         }
     });
