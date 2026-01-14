@@ -8,7 +8,6 @@ pub fn novel_page_list() -> impl IntoView {
             <style>
             "
                 .text-box-pos {
-                    position: relative;
                     /* Flexbox を有効化 */
                     display: flex;
                         /* 横方向 中央 */
@@ -55,6 +54,9 @@ pub fn novel_page_list() -> impl IntoView {
                     </p>
                     <p>
                         <A attr:class="novel-link" href="/novel_3">"novel_3"</A>
+                    </p>
+                    <p>
+                        <A attr:class="novel-link" href="/test_1">"test"</A>
                     </p>
                 </div>
             </div>

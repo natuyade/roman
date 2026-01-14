@@ -27,16 +27,11 @@ fn App() -> impl IntoView {
         <style>{ global_style() }</style>
         <Router>
             <div>
-                <nav>
-                    <A href="/">"HOME"</A>
-                    <A href="/list">"目次"</A>
-                    <A href="/test_1">"test"</A>
-                </nav>
             </div>
             <div>
                 <main>
                     <Routes fallback=|| "Page not found.">
-                        <Route path=path!("/") view=HomePage/>
+                        <Route path=path!("/") view=Test1/>
                         <Route path=path!("/list") view=NovelPageList/>
                         <Route path=path!("/novel_1") view=NovelPage1/>
                         <Route path=path!("/novel_2") view=NovelPage2/>

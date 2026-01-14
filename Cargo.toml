@@ -15,4 +15,3 @@ leptos = { version = "0.8.15", features = ["csr"] }
 leptos_router = { version = "0.8.11" ,features=[]}
 wasm-bindgen = { version="0.2", features=[]}
 web-sys = { version="0.3", features=["HtmlCanvasElement","CanvasRenderingContext2d"]}
-gloo-timers = { version = "0.3", features = ["futures"] }

@@ -1,7 +1,8 @@
-use leptos::{prelude::*, task::spawn_local};
+use leptos::prelude::*;
+use leptos_router::components::A;
 use leptos::html::Canvas;
 
-use crate::menu_icon::{draw_menu_icon, draw_menu_icon_false};
+use crate::menu_icon::draw_menu_icon;
 
 #[component]
 pub fn test_1() -> impl IntoView {
@@ -39,23 +40,11 @@ pub fn test_1() -> impl IntoView {
                         ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
                         ctx.set_fill_style_str("black");
                         draw_menu_icon(&ctx);
-                        spawn_local(async move {
-                            gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
-                            
-                            spawn_local(async move {
-                                gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
-                    });
                 } else {
-                        ctx.set_fill_style_str("green");
+                        ctx.set_fill_style_str("rgba(92, 38, 92, 1)");
                         ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
-                        ctx.set_fill_style_str("white");
+                        ctx.set_fill_style_str("rgba(248, 191, 33, 1)");
                         draw_menu_icon(&ctx);
-                        spawn_local(async move {
-                            gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
-                            
-                            spawn_local(async move {
-                                gloo_timers::future::sleep(std::time::Duration::from_secs(5)).await;
-                    });
                     //draw_menu_icon_false(&ctx);
                 }
         }
@@ -63,41 +52,55 @@ pub fn test_1() -> impl IntoView {
     view! {
         <style>
             "
-                .menu-button {
-                    height: 100vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                @keyframes toggle-menu {
+                    0%{
+                        top: 4px;
+                    },
+                    100%{
+                        top: 0;
+                    }
                 }
-
-                .menu {
-                    display: block;
+                
+                .menuwrap {
+                    height: 100vh;
                 }
                 
                 .menu-icon {
-                    display: block;
-                    width: 32px;
-                    height: 32px;
-                    background-image: `draw_menu_icon(&ctx)`;
-                    background-size: cover;
+                    position: fixed;
+                        top: 0;
+                        right: 0;
+                    width: 48px;
+                    height: 48px;
+                    animation: toggle-menu 300ms linear forwards;
+                    z-index: 9999;
                 }
-
-                #toggle:checked ~ .menu {
-                    display: none;
-                }
-                
-                #toggle:checked ~ canvas {
-                    rotate: 90deg; 
+                .menu-icon:hover {
+                    opacity: 0.8;
                 }
             "
         </style>
-        <div class="menu-button">
-                <canvas node_ref=canvas_ref width="320" height="320" on:click=move |_| {
-                    set_checked.update(|c| *c = !*c)
+        <div class="menuwrap">
+                    <Show when={move || !checked.get()}>
+                        <canvas class="menu-icon" node_ref=canvas_ref width="320" height="320"
+                            on:click=move |_| {
+                                set_checked.update(|c| *c = !*c)
                     }></canvas>
-            <div class="menu">
-                <img src="assets/images/p2r_logo_wh.webp"></img>
-            </div>
+                    </Show>
+                    <Show when={move || checked.get()}>
+                        <canvas class="menu-icon" node_ref=canvas_ref width="320" height="320"
+                            on:click=move |_| {
+                                set_checked.update(|c| *c = !*c)
+                    }></canvas>
+                    </Show>
+                        <Show when={move || !checked.get()}>
+                            <div class="menu">
+                                <nav>
+                                    <A href="/">"HOME"</A>
+                                    <A href="/list">"目次"</A>
+                                    <A href="/test_1">"test"</A>
+                                </nav>
+                            </div>
+                        </Show>
         </div>
     }
 }

@@ -23,16 +23,21 @@ pub fn global_style() -> &'static str {
     }
 
     nav {
-        background-color: rgba(92, 38, 92, 1);
         position: fixed;
-        top: 0;
-        left: 0;
+        display: flex;
+            align-items: center;
+            flex-direction: column;
+        background-color: rgba(92, 38, 92, 1);
         width: 100%;
-        z-index: 9999;
+        z-index: 9998;
     }
     nav a {
-        margin-right: 10px;
+        margin: 16px;
         color: rgba(248, 191, 33, 1);
+        text-decoration: none;
+    }
+    nav a:hover {
+        opacity: 0.8;
     }
     
     .novelbg {

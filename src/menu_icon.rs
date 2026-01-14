@@ -126,6 +126,3 @@ pub fn draw_menu_icon(ctx: &web_sys::CanvasRenderingContext2d){
     // 2下下部分
     ctx.fill_rect(60.0, 250.0, 120.0, 30.0);
 }
-
-pub fn draw_menu_icon_false(ctx: &web_sys::CanvasRenderingContext2d){
-}

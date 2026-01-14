@@ -84,9 +84,14 @@ pub fn HomePage() -> impl IntoView {
             color: Yellow;
             text-align: center;
         }
+        
         .schedule-img {
             width: 240px;
         }
+        .schedule-img:hover {
+            opacity: 0.8;
+        }
+        
         "#
         </style>
         <div class="wrapper">
