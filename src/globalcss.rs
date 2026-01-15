@@ -9,6 +9,15 @@ pub fn global_style() -> &'static str {
         font-display: swap;
     }
     
+    @keyframes toggle-menu {
+        0%{
+            top: 4px;
+        },
+        100%{
+            top: 0;
+        }
+    }
+    
     html, body {
         margin: 0;
         padding: 0;
@@ -22,14 +31,32 @@ pub fn global_style() -> &'static str {
         cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
 
+    .menu-icon {
+        position: fixed;
+            top: 0;
+            right: 0;
+        width: 48px;
+        height: 48px;
+        z-index: 9999;
+    }
+    .menu-icon:hover {
+        opacity: 0.8;
+    }
+    .menu-anim {
+        animation-name: toggle-menu;
+        animation-duration: 0.2s;
+    }
+    
     nav {
         position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 9998;
         display: flex;
             align-items: center;
             flex-direction: column;
         background-color: rgba(92, 38, 92, 1);
-        width: 100%;
-        z-index: 9998;
+        border-bottom: 2px solid #000000;
     }
     nav a {
         margin: 16px;

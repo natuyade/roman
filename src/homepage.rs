@@ -26,24 +26,28 @@ pub fn HomePage() -> impl IntoView {
         }
         
         @keyframes splash {
+            0%{
+                scale: 90%
+            }
             46%{
-                scale: 110%
+                scale: 100%
             }
             100%{
-                scale: 100%
+                scale: 90%
             }
         }
         
         .wrapper {
-            position:relective;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            position: relative;
         }
         
         .title {
-            display: flex;
-                justify-content: center;
+            position: absolute;
+            top: 128px;
             color: white;
-            margin: auto auto;
-            margin-top: 128px;
         }
         .icon {
             width: 64px;
@@ -51,12 +55,10 @@ pub fn HomePage() -> impl IntoView {
         }
         
         .splash {
-            display: flex;
-                justify-content: center;
-            margin: auto auto;
-            max-width: 60vw;
+            position: absolute;
+                top: 256px;
             font-family: 'Unifont';
-            font-size: 24px;
+            font-size: 32px;
             color: Yellow;
             text-shadow: 0 0 12px #838939;
             animation-name: splash;
@@ -65,9 +67,8 @@ pub fn HomePage() -> impl IntoView {
         }
         
         .schedule-box {
-            display: flex;
-            justify-content: center;
-            margin: 0 auto;
+            position: absolute;
+                top: 480px;
             border: solid;
             border-width: 4px;
             border-color: white;
@@ -94,23 +95,23 @@ pub fn HomePage() -> impl IntoView {
         
         "#
         </style>
-        <div class="wrapper">
-            <div class="title">
-                <img class="icon" src="assets/images/p2r_logo_wh.webp"></img>
-                <h1>"創作小説"</h1>
-            </div>
-            <div class="splash">
-                <p>{splash}</p>
+            <div class="wrapper">
+                <div class="title">
+                    <img class="icon" src="assets/images/p2r_logo_wh.webp"></img>
+                    <h1>"創作小説"</h1>
+                </div>
+                <div class="splash">
+                    <p>{ splash }</p>
                 </div>
                 <div class="schedule-box">
-                <div class="schedule">
-                    <p>スケジュール</p>
-                    //file downloadになる形や外部ソフトの場合<A>ではなく<a>
-                    <a href="/assets/images/schedule.jpg" target="_blank">
-                        <img class="schedule-img" src="/assets/images/schedule.jpg"></img>
+                    <div class="schedule">
+                        <p>スケジュール</p>
+                        //file downloadになる形や外部サイトの場合<A>ではなく<a>
+                        <a href="/assets/images/schedule.jpg" target="_blank">
+                            <img class="schedule-img" src="/assets/images/schedule.jpg"></img>
                         </a>
+                    </div>
                 </div>
             </div>
-        </div>
     }
 }

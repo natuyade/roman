@@ -16,11 +16,11 @@ pub fn novel_page_list() -> impl IntoView {
                         align-items: center;
                     height: 100vh;
                 }
-                
+
                 .text-box {
-                    display: flex;
-                        justify-content: center;
-                        flex-direction: column;
+                display: flex;
+                    justify-content: center;
+                    flex-direction: column;
                     padding: 0px;
                     text-align: center;
                     border: solid;
@@ -32,7 +32,7 @@ pub fn novel_page_list() -> impl IntoView {
                     max-width: 256px;
                     max-height: 400px;
                 }
-                
+
                 .novel-link {
                     font-family: 'Unifont';
                     color: Yellow;
