@@ -24,7 +24,7 @@ pub fn global_style() -> &'static str {
         background: #16080D;
         /* 背景を固定 */
         background-attachment: fixed;
-        cursor: url('assets/images/cursorpg.webp') 0 0, default;
+        cursor: url('assets/images/cursorpg.webp') 0 0, auto;
     }
     
     a {
@@ -73,30 +73,32 @@ pub fn global_style() -> &'static str {
         background-size: cover;
     }
 
-    .center-bg {
-        margin: 0 auto;
+    .inner-bg {
+        position: relative;
+            top: 0;
+            margin: 0 auto;
         background: #d6d0bd;
-        width: 660px;
+        width: 100vw;
         height: 100vh;
+        max-width: 720px;
     }
     
     .inner {
-        max-width: 650px;
-        margin: 0 auto;
-        width: 650px;
-        height: auto;
+        position: absolute;
+        display: flex;
+            flex-direction: column;
+        padding: 10px;
     }
 
     .novel {
-        height: auto;
         color: #491e04;
         text-shadow: 1px 1px 1px #c6bb9f;
+        white-space: pre-line;
     }
     
     .illust {
-        width: 100vw;
-        max-width: 650px;
-        height: auto;
+        width: 100%;
+        max-width: 700px;
         border: solid;
         border-width: 1px;
     }

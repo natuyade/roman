@@ -1,4 +1,4 @@
-pub const NONS: [&str; 22] = [
+pub const NONS: [&str; 25] = [
     "P2R!!!!!!!!!!!!!",
     "イエスズメ",
     "次は03/01がプレイオフです",
@@ -21,4 +21,7 @@ pub const NONS: [&str; 22] = [
     "All illustrations are painted by natuyade.",
     "ガタイで分析",
     "Escape from Osaka",
+    "セブンはななチキよりも揚げ鶏の方が美味い",// gAku
+    "セブンのおかわりクーポンは無限に使える",// naos
+    "My identity was made with Minecraft.",
 ];

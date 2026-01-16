@@ -27,36 +27,34 @@ pub fn novel_page_1() -> impl IntoView {
 
     view! {
     <div class="novelbg">
-        <div class="center-bg">
+        <div class="inner-bg">
             <div class="inner">
-                <div>
-                    <h1>"『平凡な生活』"</h1>
-                </div>
-                    <Show 
-                        when= move || NovelImg::Novel1.nimgpath(count.get()).is_some()
-                            fallback=|| ()
-                                >{
-                                    view!{
-                                        <img
-                                        class="illust"
-                                        src = move || NovelImg::Novel1.nimgpath(count.get())
-                                        />
-                                    }
-                                }
-                    </Show>
-                <div class="novel">
-                    <p style="white-space: pre-line;">{ move || get_message(Novel::Novel1 , count.get()) }</p>                
-                    // count > 0 のときだけ「前」を表示
-                    <Show when={move || count.get() > 0}>
-                        <button class="button left" on:click=minus_click>"prev"</button>
-                    </Show>
-                    // count < pages のときだけ「次」を表示
-                    <Show when={move || count.get() + 1 < page_num}>
-                    <button class="button right" on:click=plus_click>"next"</button>
-                    </Show>
-                </div>
+                <h1>"『平凡な生活』"</h1>
+                <Show 
+                    when= move || NovelImg::Novel1.nimgpath(count.get()).is_some()
+                    fallback=|| ()
+                >{
+                    view!{
+                        <img
+                            class="illust"
+                            src = move || NovelImg::Novel1.nimgpath(count.get())
+                        />
+                    }
+                }
+                </Show>
+                
+                <p class="novel">{ move || get_message(Novel::Novel1 , count.get()) }</p>                
+                
             </div>
         </div>
+        // count > 0 のときだけ「前」を表示
+        <Show when={move || count.get() > 0}>
+            <button class="button left" on:click=minus_click>"prev"</button>
+        </Show>
+        // count < pages のときだけ「次」を表示
+        <Show when={move || count.get() + 1 < page_num}>
+        <button class="button right" on:click=plus_click>"next"</button>
+        </Show>
     </div>
     }
 }

@@ -46,12 +46,8 @@ pub fn HomePage() -> impl IntoView {
         
         .title {
             position: absolute;
-            top: 128px;
-            color: white;
-        }
-        .icon {
-            width: 64px;
-            height: 64px;
+                top: 128px;
+                color: white;
         }
         
         .splash {
@@ -73,10 +69,8 @@ pub fn HomePage() -> impl IntoView {
             border-width: 4px;
             border-color: white;
             background-color: black;
-            width: 95vw;
-            height: 95vw;
-            max-width: 320px;
-            max-height: 240px;
+            width: 320px;
+            height: 240px;
         }
 
         .schedule {
@@ -97,8 +91,7 @@ pub fn HomePage() -> impl IntoView {
         </style>
             <div class="wrapper">
                 <div class="title">
-                    <img class="icon" src="assets/images/p2r_logo_wh.webp"></img>
-                    <h1>"創作小説"</h1>
+                    <h1>"P2R創作小説"</h1>
                 </div>
                 <div class="splash">
                     <p>{ splash }</p>
