@@ -24,32 +24,40 @@ pub fn HomePage() -> impl IntoView {
         a[target="_blank"] {
             outline: none;
         }
-        
+
+        /*
+         * scaleを110%等にしたい場合
+         * 110%にするとページの大きさに干渉しページscaleが意図せず拡張されるため
+         * 元のscaleを拡大し対応させる
+         */
         @keyframes splash {
             0%{
+                transform: translateY(0px);
                 scale: 90%
             }
-            46%{
+            32%, 40%{
+            transform: translateY(-10px);
                 scale: 100%
             }
             100%{
+                transform: translateY(0px);
                 scale: 90%
             }
         }
-        
+
         .wrapper {
             display: flex;
                 justify-content: center;
                 align-items: center;
             position: relative;
         }
-        
+
         .title {
             position: absolute;
                 top: 128px;
                 color: white;
         }
-        
+
         .splash {
             position: absolute;
                 top: 256px;
@@ -58,10 +66,10 @@ pub fn HomePage() -> impl IntoView {
             color: Yellow;
             text-shadow: 0 0 12px #838939;
             animation-name: splash;
-            animation-duration: 4s;
+            animation-duration: 5s;
             animation-iteration-count: infinite;
         }
-        
+
         .schedule-box {
             position: absolute;
                 top: 480px;
@@ -69,8 +77,9 @@ pub fn HomePage() -> impl IntoView {
             border-width: 4px;
             border-color: white;
             background-color: black;
-            width: 320px;
+            width: 95vw;
             height: 240px;
+            max-width: 320px;
         }
 
         .schedule {
@@ -79,14 +88,15 @@ pub fn HomePage() -> impl IntoView {
             color: Yellow;
             text-align: center;
         }
-        
+
         .schedule-img {
-            width: 240px;
+            width: 90vw;
+            max-width: 240px;
         }
         .schedule-img:hover {
             opacity: 0.8;
         }
-        
+
         "#
         </style>
             <div class="wrapper">

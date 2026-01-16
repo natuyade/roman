@@ -1,5 +1,5 @@
 use leptos::prelude::*;
-use leptos_router::components::{A, Route, Router, Routes};
+use leptos_router::components::{Route, Router, Routes};
 use leptos_router::path;
 
 use crate::globalcss::global_style;

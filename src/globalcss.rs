@@ -59,7 +59,7 @@ pub fn global_style() -> &'static str {
         border-bottom: 2px solid #000000;
     }
     nav a {
-        margin: 16px;
+        padding: 16px;
         color: rgba(248, 191, 33, 1);
         text-decoration: none;
     }

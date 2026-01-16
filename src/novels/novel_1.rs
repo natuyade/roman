@@ -11,7 +11,6 @@ pub fn novel_page_1() -> impl IntoView {
     let (count, set_count) = signal(0usize);
 
     let page_num = Novel::Novel1.novel_page().len();
-    //let navigate = use_navigate();
 
     /* |c|はaddress , *cはその中の実体と思えばいい 
         実際は||で参照したものを*cで実体化 */

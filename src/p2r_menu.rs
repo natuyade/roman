@@ -56,7 +56,7 @@ pub fn p2r_menu() -> impl IntoView {
         }
     });
     view! {
-            <div class="manuwrap">
+            <div class="menuwrap">
                 <canvas
                     class="menu-icon"
                     class:menu-anim={move || animate.get()}
