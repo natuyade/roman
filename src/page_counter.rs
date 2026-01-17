@@ -53,7 +53,9 @@ impl NovelImg {
                 2 => Some("assets/images/hakkou.webp"),
                 3 => Some("assets/images/otosan.webp"),
                 _ => None,
+            },
                 NovelImg::Novel3 => match count {
+                    0 => Some("assets/images/temmie.webp"),
                     _ => None,
             },
         }
