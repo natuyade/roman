@@ -9,6 +9,7 @@ use crate::text_data;
 pub enum Novel {
     Novel1,
     Novel2,
+    Novel3,
 }
 
 //挿絵リスト
@@ -16,6 +17,7 @@ pub enum Novel {
 pub enum NovelImg {
     Novel1,
     Novel2,
+    Novel3,
 }
 
 impl Novel {
@@ -23,6 +25,7 @@ impl Novel {
         match self {
             Novel::Novel1 => &text_data::NOVEL1,
             Novel::Novel2 => &text_data::NOVEL2,
+            Novel::Novel3 => &text_data::NOVEL3,
         }
     }
 }
@@ -50,6 +53,8 @@ impl NovelImg {
                 2 => Some("assets/images/hakkou.webp"),
                 3 => Some("assets/images/otosan.webp"),
                 _ => None,
+                NovelImg::Novel3 => match count {
+                    _ => None,
             },
         }
     }

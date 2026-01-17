@@ -8,6 +8,7 @@ use crate::homepage::HomePage;
 use crate::novel_list::NovelPageList;
 use crate::novels::novel_1::NovelPage1;
 use crate::novels::novel_2::NovelPage2;
+use crate::novels::novel_3::NovelPage3;
 use crate::novels::test_1::Test1;
 
 mod novels;

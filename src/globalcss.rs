@@ -22,6 +22,8 @@ pub fn global_style() -> &'static str {
         margin: 0;
         padding: 0;
         background: #16080D;
+        width: 100%;
+        height: 100%;
         /* 背景を固定 */
         background-attachment: fixed;
         cursor: url('assets/images/cursorpg.webp') 0 0, auto;
@@ -79,7 +81,8 @@ pub fn global_style() -> &'static str {
             margin: 0 auto;
         background: #d6d0bd;
         width: 100vw;
-        height: 100vh;
+        height: 100%;
+        min-height: 100vh;
         max-width: 720px;
     }
     
@@ -112,6 +115,7 @@ pub fn global_style() -> &'static str {
         color: transparent;
         cursor: pointer;
         transition: background-color 0.8s, color 0.8s;
+        cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
 
     /* hoverで触れている時だけ可視化 */
