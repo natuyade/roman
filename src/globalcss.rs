@@ -67,6 +67,13 @@ pub fn global_style() -> &'static str {
         opacity: 0.8;
     }
     
+    .sound_btn {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+    }
+    
     .novelbg {
         background-image: url('assets/images/novelbg.webp');
         background-attachment: fixed;

@@ -4,6 +4,7 @@ use leptos_router::path;
 
 use crate::globalcss::global_style;
 use crate::p2r_menu::p2r_menu;
+use crate::sound_button::SoundBtn;
 use crate::homepage::HomePage;
 use crate::novel_list::NovelPageList;
 use crate::novels::novel_1::NovelPage1;
@@ -15,6 +16,7 @@ mod novels;
 
 mod globalcss;
 mod p2r_menu;
+mod sound_button;
 mod homepage;
 mod nonsense;
 mod novel_list;
@@ -30,6 +32,7 @@ fn App() -> impl IntoView {
         <style>{ global_style() }</style>
         <Router>
                 { p2r_menu() }
+                { SoundBtn() }
             <div>
                 <main>
                     <Routes fallback=|| "Page not found.">
