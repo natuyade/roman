@@ -8,7 +8,7 @@ pub fn global_style() -> &'static str {
         font-style: normal;
         font-display: swap;
     }
-    
+
     @keyframes toggle-menu {
         0%{
             top: 4px;
@@ -17,7 +17,7 @@ pub fn global_style() -> &'static str {
             top: 0;
         }
     }
-    
+
     html, body {
         margin: 0;
         padding: 0;
@@ -26,7 +26,7 @@ pub fn global_style() -> &'static str {
         background-attachment: fixed;
         cursor: url('assets/images/cursorpg.webp') 0 0, auto;
     }
-    
+
     a {
         cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
@@ -46,7 +46,7 @@ pub fn global_style() -> &'static str {
         animation-name: toggle-menu;
         animation-duration: 0.2s;
     }
-    
+
     nav {
         position: fixed;
         top: 0;
@@ -66,14 +66,24 @@ pub fn global_style() -> &'static str {
     nav a:hover {
         opacity: 0.8;
     }
-    
+
     .sound_btn {
         position: fixed;
         top: 0;
         left: 0;
         z-index: 10000;
     }
-    
+    .volume_slide {
+        position: fixed;
+        top: 0;
+        left: 2rem;
+        z-index: 10000;
+    }
+    .volume_value {
+        color: white;
+        z-index: 10000;
+    }
+
     .novelbg {
         background-image: url('assets/images/novelbg.webp');
         background-attachment: fixed;
@@ -90,7 +100,7 @@ pub fn global_style() -> &'static str {
         max-width: 720px;
         overflow-y: auto;
     }
-    
+
     .inner {
         position: absolute;
         display: flex;
@@ -103,7 +113,7 @@ pub fn global_style() -> &'static str {
         text-shadow: 1px 1px 1px #c6bb9f;
         white-space: pre-line;
     }
-    
+
     .illust {
         width: 100%;
         max-width: 700px;

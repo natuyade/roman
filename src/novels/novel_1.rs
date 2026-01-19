@@ -25,24 +25,26 @@ pub fn novel_page_1() -> impl IntoView {
 
 
     view! {
-        <div class="inner-bg">
-            <div class="inner">
-                <h1>"『平凡な生活』"</h1>
-                <Show 
-                    when= move || NovelImg::Novel1.nimgpath(count.get()).is_some()
-                    fallback=|| ()
-                >{
-                    view!{
-                        <img
-                            class="illust"
-                            src = move || NovelImg::Novel1.nimgpath(count.get())
-                        />
+        <div class="novelbg">
+            <div class="inner-bg">
+                <div class="inner">
+                    <h1>"『平凡な生活』"</h1>
+                    <Show 
+                        when= move || NovelImg::Novel1.nimgpath(count.get()).is_some()
+                        fallback=|| ()
+                    >{
+                        view!{
+                            <img
+                                class="illust"
+                                src = move || NovelImg::Novel1.nimgpath(count.get())
+                            />
+                        }
                     }
-                }
-                </Show>
+                    </Show>
                 
-                <p class="novel">{ move || get_message(Novel::Novel1 , count.get()) }</p>                
+                    <p class="novel">{ move || get_message(Novel::Novel1 , count.get()) }</p>                
                 
+                </div>
             </div>
         </div>
         // count > 0 のときだけ「前」を表示
