@@ -70,13 +70,13 @@ pub fn global_style() -> &'static str {
     .sound_btn {
         position: fixed;
         top: 0;
-        left: 0;
+        left: 12rem;
         z-index: 10000;
     }
     .volume_slide {
         position: fixed;
         top: 0;
-        left: 2rem;
+        left: 0;
         z-index: 10000;
     }
     .volume_value {

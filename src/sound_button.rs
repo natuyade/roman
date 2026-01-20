@@ -2,33 +2,27 @@ use leptos::prelude::*;
 
 #[component]
 pub fn sound_btn() -> impl IntoView {
-    let (vlmcache, set_vlmcache) = signal(0f32);
-    let (volume, set_volume) = signal(0f32);
+    let (vlmcache, set_vlmcache) = signal(0usize);
+    let (volume, set_volume) = signal(0usize);
+    let audio_ref = create_node_ref::<HtmlAudioElement>();
 
     view! {
-        <button
-            class="sound_btn"
-            on:click=move |_| {
-                if volume.get() > 0.0{
-                    set_volume.set(0.0)
-                } else {
-                    set_volume.set(vlmcache.get())
-                }
-            }>
-            <Show when=move || {volume.get() > 0.0}>
-                "🔊"
-            </Show>
-            <Show when=move || volume.get() == 0.0>
-                "🔇"
-            </Show>
-        </button>
+            <audio node_ref=audio_ref.clone()>
+                <source src="assets/sounds/button40.OGG" type="audio/ogg"/>
+                <source src="assets/sounds/button40.mp3" type="audio/mp3"/>
+            </audio>
             <input type="range"
-                min="0.0"
-                max="1.0"
-                step="0.01"
+                min="0"
+                max="100"
+                step="1"
                 value="0"
                 class="volume_slide"
                 id="sound_btn"
+                on:mouseenter=move |_| {
+                                if let Some(audio) = audio_ref.get() {
+                                    audio.pause(); // 停止
+                                }
+                            }
                 on:click=move |_| set_vlmcache.set(volume.get())
 
                 /*
@@ -40,7 +34,7 @@ pub fn sound_btn() -> impl IntoView {
                  */
                 on:input:target=move |ev| {
                     // parse()でf32に変換(audioタグのvolumeが0.0~1.0のため), resultなのでunwrap()
-                    set_volume.set(ev.target().value().parse::<f32>().unwrap())
+                    set_volume.set(ev.target().value().parse::<usize>().unwrap())
                 }
 
                 /*
@@ -51,7 +45,22 @@ pub fn sound_btn() -> impl IntoView {
                 prop:value=volume
                 />
 
-                // for debug
-            <p class="volume_value">"Volume "{ move || volume.get() * 100.0 }"%"</p>
+                <button
+                    class="sound_btn"
+                    on:click=move |_| {
+                        if volume.get() > 0{
+                            set_volume.set(0)
+                        } else {
+                            set_volume.set(vlmcache.get())
+                        }
+                    }>
+                    <Show when=move || {volume.get() > 0}>
+                        "🔊"
+                    </Show>
+                    <Show when=move || volume.get() == 0>
+                        "🔇"
+                    </Show>
+                    "Volume "{ move || volume.get() }"%"
+                </button>
     }
 }

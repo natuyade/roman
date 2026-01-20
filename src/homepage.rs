@@ -54,13 +54,13 @@ pub fn HomePage() -> impl IntoView {
 
         .title {
             position: absolute;
-                top: 128px;
+                top: 96px;
                 color: white;
         }
 
         .splash {
             position: absolute;
-                top: 256px;
+                top: 176px;
             font-family: 'Unifont';
             font-size: 32px;
             color: Yellow;
@@ -72,7 +72,7 @@ pub fn HomePage() -> impl IntoView {
 
         .schedule-box {
             position: absolute;
-                top: 480px;
+                top: 320px;
             border: solid;
             border-width: 4px;
             border-color: white;
