@@ -10,13 +10,13 @@ pub fn p2r_menu() -> impl IntoView {
 
     let (checked, set_checked) = signal(true);
     let (animate, set_animate) = signal(false);
-    
-    /* 
+
+    /*
      * menuの項目が増える可能性が十分にあるため,
      * 変数化しon:clickに割り当てをしている。
      */
     let close_menu = move |_| set_checked.set(true);
-    
+
     // EffectはDOMがレンダされた時に発動
     Effect::new(move |_| {
         if let Some(canvas) = canvas_ref.get() {

@@ -3,26 +3,26 @@ use leptos_router::components::{Route, Router, Routes};
 use leptos_router::path;
 
 use crate::globalcss::global_style;
-use crate::p2r_menu::p2r_menu;
-use crate::sound_button::SoundBtn;
 use crate::homepage::HomePage;
 use crate::novel_list::NovelPageList;
 use crate::novels::novel_1::NovelPage1;
 use crate::novels::novel_2::NovelPage2;
 use crate::novels::novel_3::NovelPage3;
 use crate::novels::test_1::Test1;
+use crate::p2r_menu::p2r_menu;
+use crate::sound_button::SoundBtn;
 
 mod novels;
 
 mod globalcss;
-mod p2r_menu;
-mod sound_button;
 mod homepage;
+mod menu_icon;
 mod nonsense;
 mod novel_list;
+mod p2r_menu;
 mod page_counter;
+mod sound_button;
 mod text_data;
-mod menu_icon;
 
 #[allow(non_snake_case)]
 // ルートApp

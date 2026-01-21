@@ -2,18 +2,16 @@ use leptos::prelude::*;
 
 use crate::page_counter::{Novel, NovelImg, get_message};
 
-
 // 小説ページ
 #[component]
 pub fn novel_page_2() -> impl IntoView {
-
     /* countはReadSignal, set_countはWriteSignal */
     let (count, set_count) = signal(0usize);
 
     let page_num = Novel::Novel2.novel_page().len();
 
-    /* |c|はaddress , *cはその中の実体と思えばいい 
-        実際は||で参照したものを*cで実体化 */
+    /* |c|はaddress , *cはその中の実体と思えばいい
+    実際は||で参照したものを*cで実体化 */
     let minus_click = move |_| {
         set_count.update(|c| *c = c.saturating_sub(1));
     };
@@ -21,15 +19,13 @@ pub fn novel_page_2() -> impl IntoView {
     let plus_click = move |_| {
         set_count.update(|c| *c += 1);
     };
-    
-
 
     view! {
         <div class="novelbg">
             <div class="inner-bg">
                 <div class="inner">
                     <h1>"『壊れかけの炒飯』"</h1>
-                    <Show 
+                    <Show
                         when= move || NovelImg::Novel2.nimgpath(count.get()).is_some()
                         fallback=|| ()
                     >{
@@ -41,9 +37,9 @@ pub fn novel_page_2() -> impl IntoView {
                         }
                     }
                     </Show>
-                
-                    <p class="novel">{ move || get_message(Novel::Novel2 , count.get()) }</p>                
-                
+
+                    <p class="novel">{ move || get_message(Novel::Novel2 , count.get()) }</p>
+
                 </div>
             </div>
         </div>
