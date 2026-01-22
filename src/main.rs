@@ -10,10 +10,11 @@ use crate::novels::novel_2::NovelPage2;
 use crate::novels::novel_3::NovelPage3;
 use crate::novels::test_1::Test1;
 use crate::p2r_menu::p2r_menu;
-use crate::sound_button::SoundBtn;
+use crate::setting_menu::setting_menu;
 
 mod novels;
 
+mod load_sound;
 mod globalcss;
 mod homepage;
 mod menu_icon;
@@ -21,7 +22,7 @@ mod nonsense;
 mod novel_list;
 mod p2r_menu;
 mod page_counter;
-mod sound_button;
+mod setting_menu;
 mod text_data;
 
 #[allow(non_snake_case)]
@@ -31,8 +32,10 @@ fn App() -> impl IntoView {
     view! {
         <style>{ global_style() }</style>
         <Router>
+            <div class="menuicons">
                 { p2r_menu() }
-                { SoundBtn() }
+                { setting_menu() }
+            </div>
             <div>
                 <main>
                     <Routes fallback=|| "Page not found.">

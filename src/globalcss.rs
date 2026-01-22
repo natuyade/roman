@@ -30,6 +30,9 @@ pub fn global_style() -> &'static str {
     a {
         cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
+    button {
+        cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
+    }
 
     .menu-icon {
         position: fixed;
@@ -66,22 +69,88 @@ pub fn global_style() -> &'static str {
     nav a:hover {
         opacity: 0.8;
     }
-
-    .sound_btn {
+    
+    .settings {
         position: fixed;
-        top: 0;
-        left: 12rem;
-        z-index: 10000;
+        width: 100vw;
+        height: 100vh;
+        background-color: #124124;
+        z-index: 9997;
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
     }
-    .volume_slide {
+    .settings_icon {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 10000;
+        width: 64px;
+        height: 64px;
+        z-index: 9999;
+    }
+
+    .sound_btn {
+        z-index: 9998;
     }
     .volume_value {
         color: white;
-        z-index: 10000;
+        z-index: 9998;
+    }
+
+    .serange {
+        /* defaultのappearanceを削除 */
+        appearance: none;
+        /* focusされた際のoutlineを削除 */
+        outline: none;
+        /* 操作中のズーム,スクロールを無効 */
+        touch-action: none;
+        width: 25%;
+        background: #cefdd1;
+        height: 4px;
+        border-radius: 8px;
+        cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
+    }
+
+    /* WebKit 系 */
+    .serange::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 22px;
+        width: 22px;
+        background-color: white;
+        border-radius: 50%;
+        border: 2px solid #727272;
+    }
+    .serange::-webkit-slider-thumb:hover {
+        background-color: #ebdfec;
+    }
+    .serange:active::-webkit-slider-thumb {
+        background-color: #afb0b1;
+    }
+    .serange:focus::-webkit-slider-thumb {
+        background-color: #afb0b1;
+    }
+
+    /* Gecko 系 */
+    .serange::-moz-range-thumb {
+        /* border-boxでpaddingとborderがwidth,height)に含まれる */
+        box-sizing: border-box;
+        /* borderが初期でついているため消去 */
+        border: none;
+        height: 22px;
+        width: 22px;
+        background-color: #white;
+        border-radius: 50%;
+        border: 2px solid #727272;
+    }
+    .serange::-moz-range-thumb:hover {
+        background-color: #ebdfec;
+    }
+    .serange:active::-moz-range-thumb {
+        background-color: #afb0b1;
+    }
+    .serange:focus::-moz-range-thumb {
+        background-color: #afb0b1;
     }
 
     .novelbg {
