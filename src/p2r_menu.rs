@@ -8,14 +8,14 @@ use crate::menu_icon::draw_menu_icon;
 pub fn p2r_menu() -> impl IntoView {
     let canvas_ref: NodeRef<Canvas> = NodeRef::new();
 
-    let (checked, set_checked) = signal(true);
-    let (animate, set_animate) = signal(false);
+    let (menu, set_menu) = signal(false);
+    let (menu_anim, set_menu_anim) = signal(false);
 
     /*
      * menuの項目が増える可能性が十分にあるため,
      * 変数化しon:clickに割り当てをしている。
      */
-    let close_menu = move |_| set_checked.set(true);
+    let close_menu = move |_| set_menu.set(false);
 
     // EffectはDOMがレンダされた時に発動
     Effect::new(move |_| {
@@ -42,7 +42,7 @@ pub fn p2r_menu() -> impl IntoView {
             // 描画リフレッシュ
             ctx.clear_rect(0.0, 0.0, 320.0, 320.0);
 
-            if checked.get() {
+            if !menu.get() {
                 ctx.set_fill_style_str("white");
                 ctx.fill_rect(0.0, 0.0, 320.0, 320.0);
                 ctx.set_fill_style_str("black");
@@ -59,15 +59,15 @@ pub fn p2r_menu() -> impl IntoView {
             <div class="menuwrap">
                 <canvas
                     class="menu-icon"
-                    class:menu-anim={move || animate.get()}
+                    class:menu-anim={move || menu_anim.get()}
                     node_ref=canvas_ref width="320" height="320"
-                    on:click={move |_| {
-                        set_animate.set(true);
-                        set_checked.update(|c| *c = !*c);
-                    }}
-                    on:animationend=move |_| set_animate.set(false)
+                    on:click=move |_| {
+                        set_menu_anim.set(true);
+                        set_menu.update(|c| *c = !*c);
+                    }
+                    on:animationend=move |_| set_menu_anim.set(false)
                 ></canvas>
-                <Show when={move || !checked.get()}>
+                <Show when={move || menu.get()}>
                     <div>
                         <nav class="menu">
                             <A href="/"

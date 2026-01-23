@@ -17,10 +17,22 @@ pub fn global_style() -> &'static str {
             top: 0;
         }
     }
+    @keyframes toggle-setting {
+        0%{
+            top: 4px;
+            transform: rotateY(200deg);
+        },
+        100%{
+            top: 0;
+            transform: rotateY(360deg);
+        }
+    }
 
     html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
         background: #16080D;
         /* 背景を固定 */
         background-attachment: fixed;
@@ -33,7 +45,14 @@ pub fn global_style() -> &'static str {
     button {
         cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
-
+    p {
+        margin: 0;
+    }
+    
+    .menuicons {
+        width:100%;
+    }
+    
     .menu-icon {
         position: fixed;
             top: 0;
@@ -54,7 +73,7 @@ pub fn global_style() -> &'static str {
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 9998;
+        z-index: 9997;
         display: flex;
             align-items: center;
             flex-direction: column;
@@ -70,32 +89,84 @@ pub fn global_style() -> &'static str {
         opacity: 0.8;
     }
     
-    .settings {
+    .settings_wrapper {
         position: fixed;
+        z-index: 9998;
+    }
+    .stng_container {
+        position: relative;
+        background-color: rgba(0,0,0,0.7);
         width: 100vw;
         height: 100vh;
-        background-color: #124124;
-        z-index: 9997;
         display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
+    .close_button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 48px;
+        height: 48px;
+    }
+    .close_button:hover {
+        opacity: 0.8;
+    }
+    
     .settings_icon {
         position: fixed;
         top: 0;
-        left: 0;
-        width: 64px;
-        height: 64px;
+        right: 3rem;
+        width: 48px;
+        height: 48px;
         z-index: 9999;
+    }
+    .settings_icon:hover {
+        opacity: 0.8;
+    }
+    .setting_anim {
+        animation-name: toggle-setting;
+        animation-duration: 0.2s;
+    }
+    .settings {
+        position: absolute;
+        width: 80%;
+        height: 64%;
+        max-width: 720px;
+        max-height: 680px;
+        background-color: #bca4ba;
+        border-radius: 16px;
+    }
+    .settings_tab {
+        position: absolute;
+        width: 100%;
+        height: 48px;
+        background-color: #9426d9;
+        border-radius: 16px 16px 0 0;
+        display: flex;
+            justify-content: center;
+            align-items: center;
+    }
+    .settings_text {
+        margin: 0;
+        font-size: 1.5em;
+        color: #f3f0f4;
+    }
+    
+    .sounds_stng {
+        width: 100%;
+        height: 100%;
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
     }
 
     .sound_btn {
-        z-index: 9998;
     }
     .volume_value {
         color: white;
-        z-index: 9998;
     }
 
     .serange {
@@ -105,7 +176,8 @@ pub fn global_style() -> &'static str {
         outline: none;
         /* 操作中のズーム,スクロールを無効 */
         touch-action: none;
-        width: 25%;
+        width: 70vw;
+        max-width: 256px;
         background: #cefdd1;
         height: 4px;
         border-radius: 8px;
@@ -215,6 +287,53 @@ pub fn global_style() -> &'static str {
     .right {
         right: 0;
         width: 24vw;
+    }
+    
+    /* novellist */
+    .text-box-pos {
+        /* Flexbox を有効化 */
+        display: flex;
+            /* 横方向 中央 */
+            justify-content: center;
+            /* 縦方向 中央 */
+            align-items: center;
+        height: 100vh;
+    }
+
+    .text-box {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0px;
+        border: solid;
+        border-width: 4px;
+        border-color: white;
+        background-color: black;
+        width: 50vw;
+        height: 70vh;
+        max-width: 256px;
+        max-height: 400px;
+    }
+    
+    .text-box .p-margin {
+        margin-top: 16px;
+    }
+
+    .novel-link {
+        font-family: 'Unifont';
+        color: Yellow;
+        text-decoration: none;
+    }
+    .novel-link:hover {
+        color: orange;
+    }
+    .list_subtitle {
+        text-align: center;
+        width: 100%;
+        font-size: 12px;
+        color: lightgreen;
     }
     "
 }
