@@ -1,5 +1,10 @@
-use crate::{SoundSE, load_sound::{LoadSounds, SoundEffects}};
 use leptos::prelude::*;
+use wasm_bindgen::JsCast;
+
+use crate::{
+    SoundSE,
+    load_sound::{LoadSounds, SoundEffects},
+};
 
 #[component]
 pub fn sounds_vlm() -> (ReadSignal<usize>, WriteSignal<usize>) {
@@ -9,6 +14,7 @@ pub fn sounds_vlm() -> (ReadSignal<usize>, WriteSignal<usize>) {
 pub fn setting_menu_tab() -> impl IntoView {
     let (settings, set_settings) = signal(false);
     let (settings_anim, set_settings_anim) = signal(false);
+    let (tab_anim, set_tab_anim) = signal(false);
 
     let (vlmcache, set_vlmcache) = signal(0usize);
 
@@ -21,27 +27,68 @@ pub fn setting_menu_tab() -> impl IntoView {
         // load soundlist
         <LoadSounds sound_refs=sound_ref />
 
-        <div class="settings_wrapper">
+        <div class="settings-wrapper">
             <img src="assets/images/setting.webp"
-                class="settings_icon"
-                class:setting_anim={move || settings_anim.get()}
+                class="settings-icon"
+                class:setting-anim={move || settings_anim.get()}
                 on:click=move |_| {
-                    set_settings_anim.set(true);
-                    set_settings.update(|c| *c = !*c)
+                    if !settings.get() {
+                        set_settings.set(true)
+                    } else {
+                        set_tab_anim.set(true)
+                    }
+                    set_settings_anim.set(true)
                 }
                 on:animationend=move |_| set_settings_anim.set(false)
             />
             <Show when=move || settings.get()>
-            <div class="stng_container">
-                <div class="settings">
-                <div class="settings_tab">
-                    <h1 class="settings_text">"設定"</h1>
+            <div class="stng-container">
+                <div class="stng-bg"
+                    on:click=move |_| set_tab_anim.set(true)
+                >
                 </div>
-                <div class="sounds_stng">
-                    <img class="close_button"
+                <div
+                    class="settings"
+                    class:settings-tab-anim-open=move || settings.get()
+                    class:settings-tab-anim-close=move || tab_anim.get()
+                    on:animationend=move |_| 
+                        if tab_anim.get() {
+                            set_tab_anim.set(false);
+                            set_settings.set(false)
+                        }
+                >
+                <div class="settings-tab">
+                    <h1 class="settings-text">"設定"</h1>
+                </div>
+                <div class="sounds-stng">
+                    <img class="close-button"
                         src="assets/images/close.webp"
-                        on:click=move |_| set_settings.set(false)
+                        on:click=move |_| set_tab_anim.set(true)
                     />
+                    <div 
+                        class="serange-wrapper"
+                        on:mouseenter= move |_| {
+                            if let Some(audio) = cursoron_ref.get() {
+                                let audio_cloned = 
+                                    audio
+                                    /* 
+                                     * trueで<audio>の中(子要素含む全て)まで複製する
+                                     * falseは<audio>(親要素)のみ
+                                     */ 
+                                    .clone_node_with_deep(true)
+                                    .unwrap()
+                                    /* 
+                                     * JsValueを受け取り型チェックを行わず
+                                     * HtmlAudioElementだと仮定して
+                                     * 型をHtmlAudioElementに付け替える
+                                     */ 
+                                    .unchecked_into::<web_sys::HtmlAudioElement>();
+                        
+                                audio_cloned.set_volume(sevlm.get() as f64 / 100.0);
+                                let _ = audio_cloned.play();
+                            }
+                        }
+                    >
                     <input
                         type="range"
                         min="0"
@@ -49,15 +96,6 @@ pub fn setting_menu_tab() -> impl IntoView {
                         step="1"
                         value="0"
                         class="serange"
-                        on:mouseenter= move |_| {
-                            if let Some(audio) = cursoron_ref.get() {
-                                let _ = {
-                                    audio.set_volume(sevlm.get() as f64 / 100.0);
-                                    audio.load();
-                                    audio.play()
-                                };
-                            }
-                        }
                         on:click=move |_| set_vlmcache.set(sevlm.get())
 
                         /*
@@ -79,7 +117,7 @@ pub fn setting_menu_tab() -> impl IntoView {
                         */
                         prop:value=sevlm
                     />
-
+                    </div>
                     <button
                         on:click=move |_| {
                             if sevlm.get() > 0{

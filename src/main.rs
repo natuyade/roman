@@ -10,13 +10,13 @@ use crate::novels::novel_2::NovelPage2;
 use crate::novels::novel_3::NovelPage3;
 use crate::novels::test_1::Test1;
 use crate::p2r_menu::p2r_menu;
-use crate::setting_menu::{setting_menu_tab, SoundsVlm};
+use crate::setting_menu::{SoundsVlm, setting_menu_tab};
 
 mod novels;
 
-mod load_sound;
 mod globalcss;
 mod homepage;
+mod load_sound;
 mod menu_icon;
 mod nonsense;
 mod novel_list;
@@ -28,21 +28,17 @@ mod text_data;
 #[derive(Clone)]
 pub struct SoundSE {
     pub sevlm: ReadSignal<usize>,
-    pub set_sevlm: WriteSignal<usize>
+    pub set_sevlm: WriteSignal<usize>,
 }
 
 #[allow(non_snake_case)]
 // ルートApp
 #[component]
 fn App() -> impl IntoView {
-    
     let (sevlm, set_sevlm) = SoundsVlm();
-    
-    provide_context(SoundSE {
-        sevlm,
-        set_sevlm
-    });
-    
+
+    provide_context(SoundSE { sevlm, set_sevlm });
+
     view! {
         <style>{ global_style() }</style>
         <Router>

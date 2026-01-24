@@ -69,16 +69,36 @@ pub fn p2r_menu() -> impl IntoView {
                 ></canvas>
                 <Show when={move || menu.get()}>
                     <div>
-                        <nav class="menu">
-                            <A href="/"
-                                on:click=close_menu
-                            >"HOME"</A>
-                            <A href="/list"
-                            on:click=close_menu
-                            >"目次"</A>
-                            <A href="/test_1"
-                            on:click=close_menu
-                            >"test"</A>
+                        <nav>
+                            <ul>
+                                <li class:li-anim=move || menu.get()>
+                                <A attr:class="menu-a" href="/"
+                                    on:click=close_menu
+                                >"HOME"</A>
+                                <div 
+                                    class="menu-tab-border"
+                                    class:li-anim=move || menu.get()
+                                />
+                                </li>
+                                <li class:li-anim=move || menu.get()>
+                                <A attr:class="menu-a" href="/list"
+                                    on:click=close_menu
+                                >"目次"</A>
+                                <div 
+                                    class="menu-tab-border"
+                                    class:li-anim=move || menu.get()
+                                />
+                                </li>
+                                <li class:li-anim=move || menu.get()>
+                                <A attr:class="menu-a" href="/test_1"
+                                    on:click=close_menu
+                                >"test"</A>
+                                <div 
+                                    class="menu-tab-border"
+                                    class:li-anim=move || menu.get()
+                                />
+                                </li>
+                            </ul>
                         </nav>
                     </div>
                 </Show>

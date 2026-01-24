@@ -27,7 +27,31 @@ pub fn global_style() -> &'static str {
             transform: rotateY(360deg);
         }
     }
-
+    @keyframes toggle-menu-tab {
+        0%{
+            width: 10%;
+        },
+        100%{
+            width: 100%;
+        }
+    }
+    @keyframes settingstab-anim-open {
+        0%{
+            scale: 0%;
+        }
+        100%{
+            scale: 100%;
+        }
+    }
+    @keyframes settingstab-anim-close {
+        0%{
+            scale: 100%;
+        }
+        100%{
+            scale: 0%;
+        }
+    }
+    
     html, body {
         margin: 0;
         padding: 0;
@@ -37,6 +61,7 @@ pub fn global_style() -> &'static str {
         /* 背景を固定 */
         background-attachment: fixed;
         cursor: url('assets/images/cursorpg.webp') 0 0, auto;
+        user-select: none;
     }
 
     a {
@@ -45,14 +70,11 @@ pub fn global_style() -> &'static str {
     button {
         cursor: url('assets/images/cursorpg.webp') 0 0, pointer;
     }
-    p {
-        margin: 0;
-    }
-    
+
     .menuicons {
         width:100%;
     }
-    
+
     .menu-icon {
         position: fixed;
             top: 0;
@@ -74,46 +96,73 @@ pub fn global_style() -> &'static str {
         top: 0;
         width: 100%;
         z-index: 9997;
-        display: flex;
-            align-items: center;
-            flex-direction: column;
-        background-color: rgba(92, 38, 92, 1);
-        border-bottom: 2px solid #000000;
     }
     nav a {
         padding: 16px;
         color: rgba(248, 191, 33, 1);
         text-decoration: none;
     }
-    nav a:hover {
-        opacity: 0.8;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        transform: scale(-1, 1);
     }
-    
-    .settings_wrapper {
+    li {
+        position: relative;
+        width: 100vw;
+        height: 60px;
+        background-color: rgb(92, 38, 92);
+    }
+    li:hover {
+        background-color: rgb(73 38 73);
+    }
+    .menu-a {
+        display: inline-block;
+        transform: scale(-1, 1);
+    }
+    .menu-tab-border {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom: 3px double #242424;
+    }
+    .li-anim {
+        animation-name: toggle-menu-tab;
+        animation-duration: 0.5s;
+    }
+
+    .settings-wrapper {
         position: fixed;
         z-index: 9998;
     }
-    .stng_container {
+    .stng-container {
         position: relative;
-        background-color: rgba(0,0,0,0.7);
         width: 100vw;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .close_button {
+    .stng-bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+    }
+    .close-button {
         position: absolute;
         top: 0;
         right: 0;
         width: 48px;
         height: 48px;
     }
-    .close_button:hover {
+    .close-button:hover {
         opacity: 0.8;
     }
-    
-    .settings_icon {
+
+    .settings-icon {
         position: fixed;
         top: 0;
         right: 3rem;
@@ -121,10 +170,10 @@ pub fn global_style() -> &'static str {
         height: 48px;
         z-index: 9999;
     }
-    .settings_icon:hover {
+    .settings-icon:hover {
         opacity: 0.8;
     }
-    .setting_anim {
+    .setting-anim {
         animation-name: toggle-setting;
         animation-duration: 0.2s;
     }
@@ -137,7 +186,7 @@ pub fn global_style() -> &'static str {
         background-color: #bca4ba;
         border-radius: 16px;
     }
-    .settings_tab {
+    .settings-tab {
         position: absolute;
         width: 100%;
         height: 48px;
@@ -147,28 +196,42 @@ pub fn global_style() -> &'static str {
             justify-content: center;
             align-items: center;
     }
-    .settings_text {
+    
+    .settings-tab-anim-open {
+        animation-name: settingstab-anim-open;
+        animation-duration: 0.15s;
+    }
+    .settings-tab-anim-close {
+        animation-name: settingstab-anim-close;
+        animation-duration: 0.15s;
+    }
+    
+    .settings-text {
         margin: 0;
         font-size: 1.5em;
         color: #f3f0f4;
     }
-    
-    .sounds_stng {
+
+    .sounds-stng {
         width: 100%;
         height: 100%;
     display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-    
+
     }
 
-    .sound_btn {
+    .sound-btn {
     }
-    .volume_value {
+    .volume-value {
         color: white;
     }
 
+    .serange-wrapper {
+        height: 24px;
+    }
+    
     .serange {
         /* defaultのappearanceを削除 */
         appearance: none;
@@ -288,6 +351,84 @@ pub fn global_style() -> &'static str {
         right: 0;
         width: 24vw;
     }
+
+    /* homepage */
+    
+    a[target=_blank] {
+        outline: none;
+    }
+
+    /*
+     * scaleを110%等にしたい場合
+     * 110%にするとページの大きさに干渉しページscaleが意図せず拡張されるため
+     * 元のscaleを拡大し対応させる
+     */
+    @keyframes splash {
+        0%{
+            transform: translateY(0px);
+            scale: 90%
+        }
+        32%, 40%{
+        transform: translateY(-10px);
+            scale: 100%
+        }
+        100%{
+            transform: translateY(0px);
+            scale: 90%
+        }
+    }
+
+    .schedule-wrapper {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+        position: relative;
+    }
+
+    .title {
+        position: absolute;
+            top: 96px;
+            color: white;
+    }
+
+    .splash {
+        position: absolute;
+            top: 176px;
+        font-family: 'Unifont';
+        font-size: 32px;
+        color: Yellow;
+        text-shadow: 0 0 12px #838939;
+        animation-name: splash;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+
+    .schedule-box {
+        position: absolute;
+            top: 360px;
+        border: solid;
+        border-width: 4px;
+        border-color: white;
+        background-color: black;
+        width: 95vw;
+        height: 240px;
+        max-width: 320px;
+    }
+
+    .schedule {
+        font-family: 'Unifont';
+        font-size: 24px;
+        color: Yellow;
+        text-align: center;
+    }
+
+    .schedule-img {
+        width: 90vw;
+        max-width: 240px;
+    }
+    .schedule-img:hover {
+        opacity: 0.8;
+    }
     
     /* novellist */
     .text-box-pos {
@@ -316,7 +457,10 @@ pub fn global_style() -> &'static str {
         max-width: 256px;
         max-height: 400px;
     }
-    
+
+    .text-box p {
+        margin: 0;
+    }
     .text-box .p-margin {
         margin-top: 16px;
     }
@@ -329,7 +473,7 @@ pub fn global_style() -> &'static str {
     .novel-link:hover {
         color: orange;
     }
-    .list_subtitle {
+    .list-subtitle {
         text-align: center;
         width: 100%;
         font-size: 12px;
