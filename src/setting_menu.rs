@@ -67,7 +67,7 @@ pub fn setting_menu_tab() -> impl IntoView {
                     />
                     <div 
                         class="serange-wrapper"
-                        on:mouseenter= move |_| {
+                        on:mouseenter=move |_| {
                             if let Some(audio) = cursoron_ref.get() {
                                 let audio_cloned = 
                                     audio

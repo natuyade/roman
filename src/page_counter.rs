@@ -52,10 +52,11 @@ impl NovelImg {
                 1 => Some("assets/images/nattsuya-de.webp"),
                 2 => Some("assets/images/hakkou.webp"),
                 3 => Some("assets/images/otosan.webp"),
+                4 => Some("assets/images/neji.webp"),
+                5 => Some("assets/images/takeuma.webp"),
                 _ => None,
             },
             NovelImg::Novel3 => match count {
-                0 => Some("assets/images/temmie.webp"),
                 _ => None,
             },
         }

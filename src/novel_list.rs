@@ -1,8 +1,8 @@
 use leptos::prelude::*;
 use leptos_router::components::A;
 
+use crate::play_sound;
 use wasm_bindgen::JsCast;
-
 use crate::SoundSE;
 use crate::load_sound::{LoadSounds, SoundEffects};
 
@@ -23,99 +23,24 @@ pub fn novel_page_list() -> impl IntoView {
                         <A
                             attr:class="novel-link"
                             href="/novel_1"
-                            on:mouseenter= move |_| {
-                                if let Some(audio) = cursoron_ref.get() {
-                                    let _ = {
-                                        audio.set_volume(sevlm.get() as f64 / 100.0);
-                                        audio.load();
-                                        audio.play()
-                                    };
-                                }
-                            }
+                            on:mouseenter=play_sound!{cursoron_ref, sevlm}
                         >"平凡な生活"</A>
                     </p>
                     <p class="p-margin">
                     <A
                         attr:class="novel-link"
                         href="/novel_2"
-                        on:mouseenter= move |_| {
-                            if let Some(audio) = cursoron_ref.get() {
-                                let audio_cloned =
-                                    audio
-                                    /*
-                                     * trueで<audio>の中(子要素含む全て)まで複製する
-                                     * falseは<audio>(親要素)のみ
-                                     */
-                                    .clone_node_with_deep(true)
-                                    .unwrap()
-                                    /*
-                                     * JsValueを受け取り型チェックを行わず
-                                     * HtmlAudioElementだと仮定して
-                                     * 型をHtmlAudioElementに付け替える
-                                     */
-                                    .unchecked_into::<web_sys::HtmlAudioElement>();
-
-                                audio_cloned.set_volume(sevlm.get() as f64 / 100.0);
-                                let _ = audio_cloned.play();
-                            }
-                        }
+                        on:mouseenter=play_sound!{cursoron_ref, sevlm}
                     >"壊れかけの炒飯"</A>
                     </p>
                     <p class="p-margin">
                     <A
                         attr:class="novel-link"
                         href="/novel_3"
-                        on:mouseenter= move |_| {
-                            if let Some(audio) = cursoron_ref.get() {
-                                let audio_cloned =
-                                    audio
-                                    /*
-                                     * trueで<audio>の中(子要素含む全て)まで複製する
-                                     * falseは<audio>(親要素)のみ
-                                     */
-                                    .clone_node_with_deep(true)
-                                    .unwrap()
-                                    /*
-                                     * JsValueを受け取り型チェックを行わず
-                                     * HtmlAudioElementだと仮定して
-                                     * 型をHtmlAudioElementに付け替える
-                                     */
-                                    .unchecked_into::<web_sys::HtmlAudioElement>();
-
-                                audio_cloned.set_volume(sevlm.get() as f64 / 100.0);
-                                let _ = audio_cloned.play();
-                            }
-                        }
-                    >"毒チワワとコンビニ店員"</A>
+                        on:mouseenter=play_sound!{cursoron_ref, sevlm}
+                    >"ペンギンgaku園"</A>
                     </p>
-                    <p class="list-subtitle">"~のどかな街のマスコット~"</p>
-                    <p class="p-margin">
-                    <A
-                        attr:class="novel-link"
-                        href="/test_1"
-                        on:mouseenter= move |_| {
-                            if let Some(audio) = cursoron_ref.get() {
-                                let audio_cloned =
-                                    audio
-                                    /*
-                                     * trueで<audio>の中(子要素含む全て)まで複製する
-                                     * falseは<audio>(親要素)のみ
-                                     */
-                                    .clone_node_with_deep(true)
-                                    .unwrap()
-                                    /*
-                                     * JsValueを受け取り型チェックを行わず
-                                     * HtmlAudioElementだと仮定して
-                                     * 型をHtmlAudioElementに付け替える
-                                     */
-                                    .unchecked_into::<web_sys::HtmlAudioElement>();
-
-                                audio_cloned.set_volume(sevlm.get() as f64 / 100.0);
-                                let _ = audio_cloned.play();
-                            }
-                        }
-                    >"test"</A>
-                    </p>
+                    <p class="list-subtitle">"---リストバンド戦争---"</p>
                 </div>
             </div>
     }

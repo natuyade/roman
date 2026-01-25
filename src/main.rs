@@ -14,6 +14,7 @@ use crate::setting_menu::{SoundsVlm, setting_menu_tab};
 
 mod novels;
 
+mod roman_macros;
 mod globalcss;
 mod homepage;
 mod load_sound;
