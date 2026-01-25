@@ -29,10 +29,10 @@ pub fn global_style() -> &'static str {
     }
     @keyframes toggle-menu-tab {
         0%{
-            width: 10%;
+            transform: translateX(100%);
         },
         100%{
-            width: 100%;
+            transform: translateX(0%);
         }
     }
     @keyframes settingstab-anim-open {
@@ -51,7 +51,7 @@ pub fn global_style() -> &'static str {
             scale: 0%;
         }
     }
-    
+
     html, body {
         margin: 0;
         padding: 0;
@@ -97,17 +97,10 @@ pub fn global_style() -> &'static str {
         width: 100%;
         z-index: 9997;
     }
-    nav a {
-        padding: 16px;
-        color: rgba(248, 191, 33, 1);
-        text-decoration: none;
-    }
     ul {
         list-style: none;
         margin: 0;
         padding: 0;
-        text-align: center;
-        transform: scale(-1, 1);
     }
     li {
         position: relative;
@@ -118,20 +111,33 @@ pub fn global_style() -> &'static str {
     li:hover {
         background-color: rgb(73 38 73);
     }
-    .menu-a {
-        display: inline-block;
-        transform: scale(-1, 1);
-    }
     .menu-tab-border {
-        position: absolute;
+        box-sizing: border-box;
         bottom: 0;
         width: 100%;
-        height: 100%;
+        height: 60px;
         border-bottom: 3px double #242424;
+        display: table;
     }
-    .li-anim {
+    .menu-a {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: 100%;
+        color: rgba(248, 191, 33, 1);
+        text-decoration: none;
+    }
+    .li-anim1 {
         animation-name: toggle-menu-tab;
-        animation-duration: 0.5s;
+        animation-duration: 0.4s;
+    }
+    .li-anim2 {
+        animation-name: toggle-menu-tab;
+        animation-duration: 0.6s;
+    }
+    .li-anim3 {
+        animation-name: toggle-menu-tab;
+        animation-duration: 0.8s;
     }
 
     .settings-wrapper {
@@ -196,7 +202,7 @@ pub fn global_style() -> &'static str {
             justify-content: center;
             align-items: center;
     }
-    
+
     .settings-tab-anim-open {
         animation-name: settingstab-anim-open;
         animation-duration: 0.15s;
@@ -205,7 +211,7 @@ pub fn global_style() -> &'static str {
         animation-name: settingstab-anim-close;
         animation-duration: 0.15s;
     }
-    
+
     .settings-text {
         margin: 0;
         font-size: 1.5em;
@@ -231,7 +237,7 @@ pub fn global_style() -> &'static str {
     .serange-wrapper {
         height: 24px;
     }
-    
+
     .serange {
         /* defaultのappearanceを削除 */
         appearance: none;
@@ -353,7 +359,7 @@ pub fn global_style() -> &'static str {
     }
 
     /* homepage */
-    
+
     a[target=_blank] {
         outline: none;
     }
@@ -429,7 +435,7 @@ pub fn global_style() -> &'static str {
     .schedule-img:hover {
         opacity: 0.8;
     }
-    
+
     /* novellist */
     .text-box-pos {
         /* Flexbox を有効化 */
