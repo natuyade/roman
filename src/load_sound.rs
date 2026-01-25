@@ -30,7 +30,7 @@ impl SoundEffects {
 
 #[component]
 pub fn load_sounds(
-    // ここでのSoundEffectsはsound_refsの型(x: 型)
+    // ここでのSoundEffectsはsound_refsの型(x: SoundEffects型)
     sound_refs: SoundEffects
 ) -> impl IntoView {
     view! {

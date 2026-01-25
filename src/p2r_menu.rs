@@ -71,32 +71,35 @@ pub fn p2r_menu() -> impl IntoView {
                     <div>
                         <nav>
                             <ul>
-                                <li class:li-anim=move || menu.get()>
-                                <A attr:class="menu-a" href="/"
-                                    on:click=close_menu
-                                >"HOME"</A>
+                                <li class:li-anim1=move || menu.get()>
                                 <div 
                                     class="menu-tab-border"
-                                    class:li-anim=move || menu.get()
-                                />
+                                    class:li-anim1=move || menu.get()
+                                >
+                                    <A attr:class="menu-a" href="/"
+                                        on:click=close_menu
+                                    >"HOME"</A>
+                                </div>
                                 </li>
-                                <li class:li-anim=move || menu.get()>
-                                <A attr:class="menu-a" href="/list"
-                                    on:click=close_menu
-                                >"目次"</A>
+                                <li class:li-anim2=move || menu.get()>
                                 <div 
                                     class="menu-tab-border"
-                                    class:li-anim=move || menu.get()
-                                />
+                                    class:li-anim2=move || menu.get()
+                                >
+                                    <A attr:class="menu-a" href="/list"
+                                        on:click=close_menu
+                                    >"目次"</A>
+                                </div>
                                 </li>
-                                <li class:li-anim=move || menu.get()>
-                                <A attr:class="menu-a" href="/test_1"
-                                    on:click=close_menu
-                                >"test"</A>
-                                <div 
+                                <li class:li-anim3=move || menu.get()>
+                                <div
                                     class="menu-tab-border"
-                                    class:li-anim=move || menu.get()
-                                />
+                                    class:li-anim3=move || menu.get()
+                                >
+                                    <A attr:class="menu-a" href="/test_1"
+                                        on:click=close_menu
+                                    >"test"</A>
+                                </div>
                                 </li>
                             </ul>
                         </nav>
