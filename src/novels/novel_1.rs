@@ -1,7 +1,13 @@
 use leptos::prelude::*;
+use wasm_bindgen::JsCast;
 
+use crate::page_swicther;
 use crate::page_counter::{Novel, NovelImg, get_message};
 
+use crate::{
+    SoundSE,
+    load_sound::{LoadSounds, SoundEffects},
+};
 
 // 小説ページ
 #[component]
@@ -22,7 +28,10 @@ pub fn novel_page_1() -> impl IntoView {
         set_count.update(|c| *c += 1);
     };
     
-
+    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
+    
+    let sound_ref = SoundEffects::new();
+    let pageflip_ref = sound_ref.pageflip;
 
     view! {
         <div class="novelbg">
@@ -47,13 +56,6 @@ pub fn novel_page_1() -> impl IntoView {
                 </div>
             </div>
         </div>
-        // count > 0 のときだけ「前」を表示
-        <Show when={move || count.get() > 0}>
-            <button class="button left" on:click=minus_click>"prev"</button>
-        </Show>
-        // count < pages のときだけ「次」を表示
-        <Show when={move || count.get() + 1 < page_num}>
-        <button class="button right" on:click=plus_click>"next"</button>
-        </Show>
+        {page_swicther!{count, plus_click, minus_click, page_num}}
     }
 }

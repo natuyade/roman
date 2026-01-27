@@ -19,3 +19,29 @@ macro_rules! play_sound {
         }
     }
 }
+
+#[macro_export]
+macro_rules! page_swicther {
+    ($rdsig: expr, $plus: expr, $minus: expr, $nowpg: expr) => {
+        view!{
+            // count > 0 のときだけ「前」を表示
+            <Show when={move || $rdsig.get() > 0}>
+                <button
+                    class="button left"
+                    on:click=$minus
+                >
+                    "prev"
+                </button>
+            </Show>
+            // count < pages のときだけ「次」を表示
+            <Show when={move || $rdsig.get() + 1 < $nowpg}>
+                <button
+                    class="button right"
+                    on:click=$plus
+                >
+                    "next"
+                </button>
+            </Show>
+        }
+    };
+}

@@ -7,7 +7,7 @@ use leptos::{html::Audio, prelude::*};
 */
 pub struct SoundEffects {
     pub cursoron: NodeRef<Audio>,
-    pub cardflip: NodeRef<Audio>,
+    pub pageflip: NodeRef<Audio>,
 }
 
 /* 
@@ -23,7 +23,7 @@ impl SoundEffects {
          * <audio>がレンダリングされたときに対応したnode_refと自動的に紐づく
          */
             cursoron: NodeRef::new(),
-            cardflip: NodeRef::new(),
+            pageflip: NodeRef::new(),
         }
     }
 }
@@ -35,7 +35,7 @@ pub fn load_sounds(
 ) -> impl IntoView {
     view! {
         /* 
-         * audioは同時に操作される可能性があるので.clone()するが
+         * audioは同時に操作される可能性があるので.clone()する必要があるが
          * NodeRef自体がCopytraitなので書く必要はない。
          */
         <audio node_ref=sound_refs.cursoron>
@@ -43,7 +43,7 @@ pub fn load_sounds(
             <source src="assets/sounds/cursoron.ogg" type="audio/ogg"/>
             <source src="assets/sounds/cursoron.wav" type="audio/wav"/>
         </audio>
-        <audio node_ref=sound_refs.cardflip>
+        <audio node_ref=sound_refs.pageflip>
             <source src="assets/sounds/cardflip.mp3" type="audio/mp3"/>
             <source src="assets/sounds/cardflip.ogg" type="audio/ogg"/>
             <source src="assets/sounds/cardflip.wav" type="audio/wav"/>
