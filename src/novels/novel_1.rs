@@ -1,39 +1,54 @@
 use leptos::prelude::*;
-use wasm_bindgen::JsCast;
 
-use crate::page_swicther;
 use crate::page_counter::{Novel, NovelImg, get_message};
 
-use crate::{
-    SoundSE,
-    load_sound::{LoadSounds, SoundEffects},
-};
+use crate::play_sound;
+use wasm_bindgen::JsCast;
+use crate::SoundSE;
+use crate::load_sound::{LoadSounds, SoundEffects};
 
 // 小説ページ
 #[component]
 pub fn novel_page_1() -> impl IntoView {
 
+    let sound_ref = SoundEffects::new();
+    let pageflip_ref = sound_ref.pageflip;
+    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
+    
     /* countはReadSignal, set_countはWriteSignal */
     let (count, set_count) = signal(0usize);
 
     let page_num = Novel::Novel1.novel_page().len();
-
-    /* |c|はaddress , *cはその中の実体と思えばいい 
-        実際は||で参照したものを*cで実体化 */
-    let minus_click = move |_| {
-        set_count.update(|c| *c = c.saturating_sub(1));
-    };
-
-    let plus_click = move |_| {
-        set_count.update(|c| *c += 1);
-    };
     
-    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
-    
-    let sound_ref = SoundEffects::new();
-    let pageflip_ref = sound_ref.pageflip;
-
     view! {
+        <LoadSounds sound_refs = sound_ref />
+        
+        // count > 0 のときだけ「前」を表示
+        <Show when={move || count.get() > 0}>
+            <button
+                class="button left"
+                /* |c|はaddress , *cはその中の実体と思えばいい 
+                    実際は||で参照したものを*cで実体化 */
+                on:click=move |_| {
+                    set_count.update(|c| *c = c.saturating_sub(1));
+                    play_sound!(pageflip_ref, sevlm);
+                }
+            >
+                "prev"
+            </button>
+        </Show>
+        // count < pages のときだけ「次」を表示
+        <Show when={move || count.get() + 1 < page_num}>
+            <button
+                class="button right"
+                on:click=move |_| {
+                    set_count.update(|c| *c += 1);
+                }
+            >
+                "next"
+            </button>
+        </Show>
+        
         <div class="novelbg">
             <div class="inner-bg">
                 <div class="inner">
@@ -56,6 +71,5 @@ pub fn novel_page_1() -> impl IntoView {
                 </div>
             </div>
         </div>
-        {page_swicther!{count, plus_click, minus_click, page_num}}
     }
 }

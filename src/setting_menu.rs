@@ -1,10 +1,9 @@
 use leptos::prelude::*;
-use wasm_bindgen::JsCast;
 
-use crate::{
-    SoundSE,
-    load_sound::{LoadSounds, SoundEffects},
-};
+use crate::play_sound;
+use wasm_bindgen::JsCast;
+use crate::SoundSE;
+use crate::load_sound::{LoadSounds, SoundEffects};
 
 #[component]
 pub fn sounds_vlm() -> (ReadSignal<usize>, WriteSignal<usize>) {
@@ -18,10 +17,9 @@ pub fn setting_menu_tab() -> impl IntoView {
 
     let (vlmcache, set_vlmcache) = signal(0usize);
 
-    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
-
     let sound_ref = SoundEffects::new();
     let cursoron_ref = sound_ref.cursoron;
+    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
 
     view! {
         // load soundlist
@@ -51,7 +49,7 @@ pub fn setting_menu_tab() -> impl IntoView {
                     class="settings"
                     class:settings-tab-anim-open=move || settings.get()
                     class:settings-tab-anim-close=move || tab_anim.get()
-                    on:animationend=move |_| 
+                    on:animationend=move |_|
                         if tab_anim.get() {
                             set_tab_anim.set(false);
                             set_settings.set(false)
@@ -65,29 +63,9 @@ pub fn setting_menu_tab() -> impl IntoView {
                         src="assets/images/close.webp"
                         on:click=move |_| set_tab_anim.set(true)
                     />
-                    <div 
+                    <div
                         class="serange-wrapper"
-                        on:mouseenter=move |_| {
-                            if let Some(audio) = cursoron_ref.get() {
-                                let audio_cloned = 
-                                    audio
-                                    /* 
-                                     * trueで<audio>の中(子要素含む全て)まで複製する
-                                     * falseは<audio>(親要素)のみ
-                                     */ 
-                                    .clone_node_with_deep(true)
-                                    .unwrap()
-                                    /* 
-                                     * JsValueを受け取り型チェックを行わず
-                                     * HtmlAudioElementだと仮定して
-                                     * 型をHtmlAudioElementに付け替える
-                                     */ 
-                                    .unchecked_into::<web_sys::HtmlAudioElement>();
-                        
-                                audio_cloned.set_volume(sevlm.get() as f64 / 100.0);
-                                let _ = audio_cloned.play();
-                            }
-                        }
+                        on:mouseenter=play_sound!{cursoron_ref, sevlm}
                     >
                     <input
                         type="range"
