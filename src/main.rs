@@ -5,6 +5,7 @@ use leptos_router::path;
 use crate::globalcss::global_style;
 use crate::homepage::HomePage;
 use crate::novel_list::NovelPageList;
+use crate::novels::enter_code::SecretCode;
 use crate::novels::novel_1::NovelPage1;
 use crate::novels::novel_2::NovelPage2;
 use crate::novels::novel_3::NovelPage3;
@@ -55,6 +56,7 @@ fn App() -> impl IntoView {
                         <Route path=path!("/novel_1") view=NovelPage1/>
                         <Route path=path!("/novel_2") view=NovelPage2/>
                         <Route path=path!("/novel_3") view=NovelPage3/>
+                        <Route path=path!("/secret") view=SecretCode/>
                         <Route path=path!("/test_1") view=Test1/>
                     </Routes>
                 </main>

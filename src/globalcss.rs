@@ -235,7 +235,7 @@ pub fn global_style() -> &'static str {
     }
 
     .serange-wrapper {
-        height: 24px;
+        height: 28px;
     }
 
     .serange {
@@ -417,7 +417,7 @@ pub fn global_style() -> &'static str {
         border-color: white;
         background-color: black;
         width: 95vw;
-        height: 240px;
+        height: 280px;
         max-width: 320px;
     }
 

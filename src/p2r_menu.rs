@@ -96,9 +96,9 @@ pub fn p2r_menu() -> impl IntoView {
                                     class="menu-tab-border"
                                     class:li-anim3=move || menu.get()
                                 >
-                                    <A attr:class="menu-a" href="/test_1"
+                                    <A attr:class="menu-a" href="/secret"
                                         on:click=close_menu
-                                    >"test"</A>
+                                    >"Coming soon"</A>
                                 </div>
                                 </li>
                             </ul>

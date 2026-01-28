@@ -10,14 +10,44 @@ use crate::load_sound::{LoadSounds, SoundEffects};
 // 小説ページ
 #[component]
 pub fn novel_page_3() -> impl IntoView {
-
-    let sound_ref = SoundEffects::new();
-    let pageflip_ref = sound_ref.pageflip;
-    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
     
-    let (count, set_count) = signal(0usize);
-
+        let sound_ref = SoundEffects::new();
+        let pageflip_ref = sound_ref.pageflip;
+        let SoundSE { sevlm, .. } = use_context::<SoundSE>().unwrap();
+        
+        /* countはReadSignal, set_countはWriteSignal */
+        let (count, set_count) = signal(0usize);
+    
+        let page_num = Novel::Novel3.novel_page().len();
+        
     view! {
+        <LoadSounds sound_refs = sound_ref />
+        
+        <Show when={move || count.get() > 0}>
+            <button
+                class="button left"
+                on:click=
+                    move |_| {
+                        play_sound!{pageflip_ref, sevlm};
+                        set_count.update(|c| *c = c.saturating_sub(1))
+                    }
+            >
+                "prev"
+            </button>
+        </Show>
+        <Show when={move || count.get() + 1 < page_num}>
+            <button
+                class="button right"
+                on:click=
+                    move |_| {
+                        play_sound!{pageflip_ref, sevlm};
+                        set_count.update(|c| *c += 1);
+                    }
+            >
+                "next"
+            </button>
+        </Show>
+        
         <div class="novelbg">
             <div class="inner-bg">
                 <div class="inner">

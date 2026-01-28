@@ -42,21 +42,27 @@ impl NovelImg {
     pub fn nimgpath(&self, count: usize) -> Option<&'static str> {
         match self {
             NovelImg::Novel1 => match count {
-                1 => Some("assets/images/ouch.webp"),
-                2 => Some("assets/images/doup.webp"),
-                5 => Some("assets/images/ikuzo.webp"),
+                1 => Some("assets/images/illusts/ouch.webp"),
+                2 => Some("assets/images/illusts/doup.webp"),
+                5 => Some("assets/images/illusts/ikuzo.webp"),
                 _ => None,
             },
             NovelImg::Novel2 => match count {
-                0 => Some("assets/images/zenbuyaku.webp"),
-                1 => Some("assets/images/nattsuya-de.webp"),
-                2 => Some("assets/images/hakkou.webp"),
-                3 => Some("assets/images/otosan.webp"),
-                4 => Some("assets/images/neji.webp"),
-                5 => Some("assets/images/takeuma.webp"),
+                0 => Some("assets/images/illusts/zenbuyaku.webp"),
+                1 => Some("assets/images/illusts/nattsuya-de.webp"),
+                2 => Some("assets/images/illusts/hakkou.webp"),
+                3 => Some("assets/images/illusts/otosan.webp"),
+                4 => Some("assets/images/illusts/neji.webp"),
+                5 => Some("assets/images/illusts/takeuma.webp"),
                 _ => None,
             },
             NovelImg::Novel3 => match count {
+                0 => Some("assets/images/illusts/aderi-dayo.webp"),
+                1 => Some("assets/images/illusts/yattimatta.webp"),
+                2 => Some("assets/images/illusts/kaikyuu.webp"),
+                3 => Some("assets/images/illusts/doba-.webp"),
+                4 => Some("assets/images/illusts/wristband.webp"),
+                5 => Some("assets/images/illusts/ending.webp"),
                 _ => None,
             },
         }

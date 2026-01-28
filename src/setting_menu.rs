@@ -65,7 +65,7 @@ pub fn setting_menu_tab() -> impl IntoView {
                     />
                     <div
                         class="serange-wrapper"
-                        on:mouseenter=play_sound!{cursoron_ref, sevlm}
+                        on:mouseenter=move |_| play_sound!{cursoron_ref, sevlm}
                     >
                     <input
                         type="range"

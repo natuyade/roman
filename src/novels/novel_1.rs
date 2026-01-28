@@ -13,7 +13,7 @@ pub fn novel_page_1() -> impl IntoView {
 
     let sound_ref = SoundEffects::new();
     let pageflip_ref = sound_ref.pageflip;
-    let SoundSE { sevlm, set_sevlm } = use_context::<SoundSE>().unwrap();
+    let SoundSE { sevlm, .. } = use_context::<SoundSE>().unwrap();
     
     /* countはReadSignal, set_countはWriteSignal */
     let (count, set_count) = signal(0usize);
@@ -29,10 +29,12 @@ pub fn novel_page_1() -> impl IntoView {
                 class="button left"
                 /* |c|はaddress , *cはその中の実体と思えばいい 
                     実際は||で参照したものを*cで実体化 */
-                on:click=move |_| {
-                    set_count.update(|c| *c = c.saturating_sub(1));
-                    play_sound!(pageflip_ref, sevlm);
-                }
+                on:click=
+                    move |_| {
+                        // view!内のLeptosPrefixはクロージャを一つしか受け取れないため注意
+                        play_sound!{pageflip_ref, sevlm};
+                        set_count.update(|c| *c = c.saturating_sub(1))
+                    }
             >
                 "prev"
             </button>
@@ -41,9 +43,11 @@ pub fn novel_page_1() -> impl IntoView {
         <Show when={move || count.get() + 1 < page_num}>
             <button
                 class="button right"
-                on:click=move |_| {
-                    set_count.update(|c| *c += 1);
-                }
+                on:click=
+                    move |_| {
+                        play_sound!{pageflip_ref, sevlm};
+                        set_count.update(|c| *c += 1);
+                    }
             >
                 "next"
             </button>

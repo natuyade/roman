@@ -1,7 +1,6 @@
 #[macro_export]
 macro_rules! play_sound {
     ($e: expr, $field: ident) => {
-        move |_| {
         if let Some(audio) = $e.get() {
             let audio_cloned =
                 audio
@@ -24,7 +23,6 @@ macro_rules! play_sound {
              */ 
             audio_cloned.set_volume($field.get() as f64 / 100.0);
             let _ = audio_cloned.play();
-        }
         }
     }
 }

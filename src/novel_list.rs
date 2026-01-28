@@ -23,24 +23,24 @@ pub fn novel_page_list() -> impl IntoView {
                         <A
                             attr:class="novel-link"
                             href="/novel_1"
-                            on:mouseenter=play_sound!{cursoron_ref, sevlm}
+                            on:mouseenter=move |_| play_sound!{cursoron_ref, sevlm}
                         >"平凡な生活"</A>
                     </p>
                     <p class="p-margin">
                     <A
                         attr:class="novel-link"
                         href="/novel_2"
-                        on:mouseenter=play_sound!{cursoron_ref, sevlm}
+                        on:mouseenter=move |_| play_sound!{cursoron_ref, sevlm}
                     >"壊れかけの炒飯"</A>
                     </p>
                     <p class="p-margin">
                     <A
                         attr:class="novel-link"
                         href="/novel_3"
-                        on:mouseenter=play_sound!{cursoron_ref, sevlm}
+                        on:mouseenter=move |_| play_sound!{cursoron_ref, sevlm}
                     >"ペンギンgaku園"</A>
                     </p>
-                    <p class="list-subtitle">"---リストバンド戦争---"</p>
+                    <p class="list-subtitle">"~リストバンド戦争~"</p>
                 </div>
             </div>
     }

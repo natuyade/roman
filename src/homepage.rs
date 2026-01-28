@@ -14,6 +14,8 @@ fn rnd_sp(splash_num: &[&str]) -> String {
 pub fn HomePage() -> impl IntoView {
     let (splash, set_splash) = signal(rnd_sp(&nonsense::NONS));
 
+    let schedule_img = "/assets/images/schedule.jpg";
+
     Effect::new(move || {
         set_splash.set(rnd_sp(&nonsense::NONS));
     });
@@ -29,9 +31,10 @@ pub fn HomePage() -> impl IntoView {
                 <div class="schedule-box">
                     <div class="schedule">
                         <p>スケジュール</p>
+                        <p>"playoff{ 3/1 }"</p>
                         //file downloadになる形や外部サイトの場合<A>ではなく<a>
-                        <a href="/assets/images/schedule.jpg" target="_blank">
-                            <img class="schedule-img" src="/assets/images/schedule.jpg"></img>
+                        <a href="/assets/images/premier/schedule.jpg" target="_blank">
+                            <img class="schedule-img" src=schedule_img ></img>
                         </a>
                     </div>
                 </div>
