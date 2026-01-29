@@ -424,7 +424,6 @@ pub fn global_style() -> &'static str {
     .schedule {
         font-family: 'Unifont';
         font-size: 24px;
-        color: Yellow;
         text-align: center;
     }
 

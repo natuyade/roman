@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
-use crate::nonsense;
+use crate::{nonsense, pre_date};
+use crate::pre_date::PREDATE;
 
 /* 何か反応(signalの値更新やui,Aなどでの更新)がないと初期値を渡してしまうため
 Effectを使っての採用 */
@@ -14,7 +15,8 @@ fn rnd_sp(splash_num: &[&str]) -> String {
 pub fn HomePage() -> impl IntoView {
     let (splash, set_splash) = signal(rnd_sp(&nonsense::NONS));
 
-    let schedule_img = "/assets/images/schedule.jpg";
+    let schedule_date = PREDATE[0];
+    let schedule_img = PREDATE[1];
 
     Effect::new(move || {
         set_splash.set(rnd_sp(&nonsense::NONS));
@@ -30,10 +32,10 @@ pub fn HomePage() -> impl IntoView {
                 </div>
                 <div class="schedule-box">
                     <div class="schedule">
-                        <p>スケジュール</p>
-                        <p>"playoff{ 3/1 }"</p>
+                        <p style="color: yellow">スケジュール</p>
+                        <p style="color: white">"playoff"<span style="color: lime">"{ "{schedule_date}" }"</span></p>
                         //file downloadになる形や外部サイトの場合<A>ではなく<a>
-                        <a href="/assets/images/premier/schedule.jpg" target="_blank">
+                        <a href=schedule_img target="_blank">
                             <img class="schedule-img" src=schedule_img ></img>
                         </a>
                     </div>

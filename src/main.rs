@@ -18,6 +18,7 @@ mod novels;
 mod roman_macros;
 mod globalcss;
 mod homepage;
+mod pre_date;
 mod load_sound;
 mod menu_icon;
 mod nonsense;
