@@ -1,10 +1,8 @@
 use leptos::prelude::*;
 
-use crate::{nonsense, pre_date};
+use crate::nonsense;
 use crate::pre_date::PREDATE;
 
-/* 何か反応(signalの値更新やui,Aなどでの更新)がないと初期値を渡してしまうため
-Effectを使っての採用 */
 fn rnd_sp(splash_num: &[&str]) -> String {
     let splash = fastrand::usize(0..splash_num.len());
     splash_num[splash].to_string()

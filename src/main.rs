@@ -51,7 +51,7 @@ fn App() -> impl IntoView {
             </div>
             <div>
                 <main>
-                    <Routes fallback=|| "Page not found.">
+                    <Routes fallback= || "Page not found.">
                         <Route path=path!("/") view=HomePage/>
                         <Route path=path!("/list") view=NovelPageList/>
                         <Route path=path!("/novel_1") view=NovelPage1/>
